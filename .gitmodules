@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/restful_authentication"]
 	path = vendor/plugins/restful_authentication
 	url = git@github.com:jgoldwasser/restful-authentication.git
+[submodule "vendor/plugins/forgot_password"]
+	path = vendor/plugins/forgot_password
+	url = git@github.com:jgoldwasser/forgot_password.git
