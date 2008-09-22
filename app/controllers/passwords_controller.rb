@@ -2,7 +2,7 @@ class PasswordsController < ApplicationController
 
   def new
     @password = Password.new
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @password }
@@ -12,7 +12,7 @@ class PasswordsController < ApplicationController
   def create
     @password = Password.new(params[:password])
     @password.user = User.find_by_email(@password.email)
-    
+
     respond_to do |format|
       if @password.save
         PasswordMailer.deliver_forgot_password(@password)
@@ -32,23 +32,22 @@ class PasswordsController < ApplicationController
     rescue
       flash[:notice] = 'The change password URL you visited is either invalid or expired.'
       redirect_to(new_password_path)
-    end    
+    end
   end
 
   def update_after_forgetting
-    @user = Password.find_by_reset_code(params[:reset_code]).user
-    
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        flash[:notice] = 'Password was successfully updated.'
-        format.html { redirect_to(:action => :reset, :reset_code => params[:reset_code]) }
-      else
-        flash[:notice] = 'EPIC FAIL!'
-        format.html { redirect_to(:action => :reset, :reset_code => params[:reset_code]) }
-      end
+    password = Password.find_by_reset_code(params[:reset_code])
+    @user = password.user
+    logger.debug("@@@ params #{params}")
+    if @user.update_attributes(params[:user]) && params[:confirmationpassword].nil? == false
+      flash[:notice] = 'Password was successfully updated.'
+      redirect_to(login_url)
+    else
+      flash[:notice] = 'We were unable to reset your password.'
+      render :action => :reset
     end
   end
-  
+
   def update
     @password = Password.find(params[:id])
 
