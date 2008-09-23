@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGELOG</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGELOG</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>vendor/plugins/aasm/CHANGELOG
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Sep 21 10:45:34 -0700 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <ul>
+<li>In AR persistence, move state column from class level variables into the
+StateMachine object for the class
+
+</li>
+<li>allowed :to array and :on_transition callback [Kevin Triplett]
+
+</li>
+<li>Support enter and exit actions on states
+
+</li>
+<li>Use named_scope in AR persistence layer, if available [Jan De Poorter]
+
+</li>
+<li>Incremented version number
+
+</li>
+<li>Cleaned up aasm_states_for_select to return the value as a string
+
+</li>
+<li>Specs and bug fixes for the ActiveRecordPersistence, keeping persistence
+columns in sync Allowing for nil values in states for active record Only
+set state to default state before_validation_on_create New rake task to
+uninstall, build and reinstall the gem (useful for development) Changed
+scott&#8216;s email address to protect it from spambots when publishing
+rdocs New non-(!) methods that allow for firing events without persisting
+[Jeff Dean]
+
+</li>
+<li>Added aasm_states_for_select that will return a select friendly collection
+of states.
+
+</li>
+<li>Add some event callbacks, aasm_event_fired(from, to), and
+aasm_event_failed(event) Based on transition logging suggestion [Artem
+Vasiliev] and timestamp column suggestion [Mike Ferrier]
+
+</li>
+<li>Add aasm_events_for_state and aasm_events_for_current_state [Joao Paulo
+Lins]
+
+</li>
+<li>Ensure that a state is written for a new record even if aasm_current_state
+or {state}= are never called.
+
+</li>
+<li>Fix AR persistence so new records have their state set. [Joao Paulo Lins]
+
+</li>
+<li>Make event! methods return a boolean [Joel Chippindale]
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
