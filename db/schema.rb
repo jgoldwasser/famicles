@@ -9,12 +9,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080921202027) do
+ActiveRecord::Schema.define(:version => 20080925044011) do
 
   create_table "passwords", :force => true do |t|
     t.integer  "user_id"
     t.string   "reset_code"
     t.datetime "expiration_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "full_name",  :default => "", :null => false
+    t.string   "hometown"
+    t.integer  "gender",                     :null => false
+    t.date     "birthdate",                  :null => false
+    t.text     "about_me"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationship_types", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "value",      :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "user_id",              :null => false
+    t.integer  "related_to_id",        :null => false
+    t.integer  "relationship_type_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

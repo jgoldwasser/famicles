@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+
+  # Famicles additons below here
+
+  has_many :relationships, :dependent => :destroy
+
   protected
     
     def make_activation_code

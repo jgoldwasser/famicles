@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/forgot_password"]
 	path = vendor/plugins/forgot_password
 	url = git@github.com:jgoldwasser/forgot_password.git
+[submodule "vendor/plugins/acts_as_list"]
+	path = vendor/plugins/acts_as_list
+	url = git://github.com/rails/acts_as_list.git
