@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
   # Famicles additons below here
 
   has_many :relationships, :dependent => :destroy
+  has_many :famicle_memberships, :dependent => :destroy
+  has_many :famicle_invitations, :foreign_key => :receiver_id, :dependent => :destroy
 
   protected
     

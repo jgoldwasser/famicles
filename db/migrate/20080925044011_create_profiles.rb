@@ -6,6 +6,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :gender, :null => false
       t.date :birthdate, :null => false
       t.text :about_me
+      t.string :timezone, :null => false
 
       t.timestamps
     end

@@ -9,7 +9,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080925044011) do
+ActiveRecord::Schema.define(:version => 20080928224629) do
+
+  create_table "famicle_invitations", :force => true do |t|
+    t.integer  "famicle_id",                      :null => false
+    t.integer  "sender_id",                       :null => false
+    t.integer  "receiver_id"
+    t.string   "email"
+    t.string   "state",           :default => "", :null => false
+    t.string   "invitation_code"
+    t.datetime "sent_at"
+    t.datetime "accepted_at"
+    t.datetime "declined_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "famicle_memberships", :force => true do |t|
+    t.integer  "user_id",                    :null => false
+    t.integer  "famicle_id",                 :null => false
+    t.string   "role",       :default => "", :null => false
+    t.boolean  "default",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
+  add_index "famicle_memberships", ["famicle_id"], :name => "index_famicle_memberships_on_famicle_id"
+
+  create_table "famicles", :force => true do |t|
+    t.string   "name",        :default => "",   :null => false
+    t.text     "description"
+    t.boolean  "public",      :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "passwords", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20080925044011) do
     t.integer  "gender",                     :null => false
     t.date     "birthdate",                  :null => false
     t.text     "about_me"
+    t.string   "timezone",   :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

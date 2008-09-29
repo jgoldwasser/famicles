@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  famicle_id: 1
+  role_id: 1
+  position: 1
+  default: false
+
+two:
+  user_id: 1
+  famicle_id: 1
+  role_id: 1
+  position: 1
+  default: false
