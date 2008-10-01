@@ -53,8 +53,13 @@ class User < ActiveRecord::Base
 
   has_many :relationships, :dependent => :destroy
   has_many :famicle_memberships, :dependent => :destroy
-  has_many :famicle_invitations, :foreign_key => :receiver_id, :dependent => :destroy
+  has_many :received_invitations, :class_name => "FamicleInvitation", :foreign_key => :receiver_id, :dependent => :destroy
+  has_many :sent_invitations, :class_name => "FamicleInvitation", :foreign_key => :sender_id, :dependent => :destroy
 
+  def accept_invitation(invite)
+    famicle_memberships.create!(:famicle => invite.famicle, :role => "member", :default => famicle_memberships.count == 0)
+  end
+  
   protected
     
     def make_activation_code

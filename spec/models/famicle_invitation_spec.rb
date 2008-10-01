@@ -36,35 +36,72 @@ describe FamicleInvitation do
 
     it "should only be allowed by an owner" do
       @other_user = create_user({:login => "invited", :email => "invited@example.com"})
-      FamicleInvitation.invite!(@famicle, @owner, @other_user.email).class.to_s.should eql("FamicleInvitation")
-      FamicleInvitation.invite!(@famicle, @creator, @other_user.email).class.to_s.should eql("FamicleInvitation")
-      lambda {FamicleInvitation.invite!(@famicle, @member, @other_user.email)}.should raise_error
+      lambda {@famicle.invite_member_by_email(@owner, @other_user.email)}.should_not raise_error
+      lambda {@famicle.invite_member_by_email(@creator, @other_user.email)}.should_not raise_error
+      lambda {@famicle.invite_member_by_email(@member, @other_user.email)}.should raise_error
     end
 
     it "should not change the number of members" do
       lambda {
         @other_user = create_user({:login => "invited", :email => "invited@example.com"})
-        FamicleInvitation.invite!(@famicle, @owner, @other_user.email)
+        @famicle.invite_member_by_email(@owner, @other_user.email)
       }.should_not change(@famicle.members, :count)
     end
 
     it "should add a famicle membership invitation to invited" do
       @other_user = create_user({:login => "invited", :email => "invited@example.com"})
       lambda {
-        FamicleInvitation.invite!(@famicle, @owner, @other_user.email)
-      }.should change(@other_user.famicle_invitations, :count).by(1)
+        @famicle.invite_member_by_email(@owner, @other_user.email)
+      }.should change(@other_user.received_invitations, :count).by(1)
+    end
+
+    it "should add a famicle invitation to the list of invites for sender" do
+      @other_user = create_user({:login => "invited", :email => "invited@example.com"})
+      lambda {
+        @famicle.invite_member_by_email(@owner, @other_user.email)
+      }.should change(@owner.sent_invitations, :count).by(1)
+    end
+
+    it "should allow aninvite to a non registered user" do
+      lambda {
+        @famicle.invite_member_by_email(@owner, "unreg@example.com")
+      }.should change(FamicleInvitation, :count).by(1)
     end
 
     it "should create an invitation with a code" do
       @other_user = create_user({:login => "invited", :email => "invited@example.com"})
-      invite = FamicleInvitation.invite!(@famicle, @owner, @other_user.email)
+      invite = @famicle.invite_member_by_email(@owner, @other_user.email)
       invite.invitation_code.should_not be_nil
     end
+
+    it "should not create a duplicate invitation" do
+      @other_user = create_user({:login => "invited", :email => "invited@example.com"})
+      invite = @famicle.invite_member_by_email(@owner, @other_user.email)
+      lambda {
+        @famicle.invite_member(@owner, @other_user)
+      }.should_not change(FamicleInvitation, :count)
+    end
+
   end
 
   describe "accepting an invitation" do
-    it "should increase the number of members"
+    before(:each) do
+      @creator = create_user({:login => "creator"})
+      @owner = create_user({:login => "owner1"})
+      @member = create_user({:login => "member"})
+      @famicle = create_famicle(@creator)
+      add_member_to_famicle(@famicle, @owner, "owner")
+      add_member_to_famicle(@famicle, @member, "member")
+    end
+    
+    it "should increase the number of members for the famicle" do
+      @other_user = create_user({:login => "invited", :email => "invited@example.com"})
+      invite = @famicle.invite_member_by_email(@owner, @other_user.email)
+      invite.invitation_code.should_not be_nil
+      lambda {
+        invite.accept!
+      }.should change(@famicle.members, :count).by(1)
+    end
 
-    it "should change the "
   end
 end
