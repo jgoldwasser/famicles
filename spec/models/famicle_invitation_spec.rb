@@ -62,7 +62,7 @@ describe FamicleInvitation do
       }.should change(@owner.sent_invitations, :count).by(1)
     end
 
-    it "should allow aninvite to a non registered user" do
+    it "should allow an invite to a non registered user" do
       lambda {
         @famicle.invite_member_by_email(@owner, "unreg@example.com")
       }.should change(FamicleInvitation, :count).by(1)
@@ -104,4 +104,52 @@ describe FamicleInvitation do
     end
 
   end
+
+  describe "signing up from an invite" do
+    before(:each) do
+      @creator = create_user({:login => "creator"})
+      @famicle = create_famicle(@creator)
+    end
+
+    it "should auto accept the invitation" do
+      invite = @famicle.invite_member_by_email(@creator, "nonmember@example.com")
+      lambda {
+        user = create_user(:login => "nonmember", :email => "nonmember@example.com")
+        user.activate!
+        user.accept_invitation_code(invite.invitation_code)
+      }.should change(@famicle.famicle_memberships, :count).by(1)
+    end
+
+  end
+
+  describe "handling more than one invite for a non user" do
+    before(:each) do
+      @creator = create_user({:login => "creator"})
+      @famicle = create_famicle(@creator)
+      @another_creator = create_user({:login => "creator2"})
+      @another_famicle = create_famicle(@another_creator)
+      @first_invite = @famicle.invite_member_by_email(@creator, "nonmember@example.com")
+      @second_invite = @another_famicle.invite_member_by_email(@another_creator, "nonmember@example.com")
+      @new_user = create_user(:login => "nonmember", :email => "nonmember@example.com")
+      @new_user.activate!
+    end
+
+    it "should show one pending invite from another member when two invites sent from different famicles" do
+      @new_user.received_invitations.pending.count.should eql(2)
+      @new_user.accept_invitation_code(@first_invite.invitation_code)
+      @new_user.famicle_memberships.count.should eql(1)
+      @famicle.members.count.should eql(2)
+      @another_famicle.members.count.should eql(1)
+      @new_user.received_invitations.pending.count.should eql(1)
+    end
+
+    it "should create the first invite as default famicle and second as non-default" do
+      @new_user.accept_invitation_code(@first_invite.invitation_code)
+      @new_user.received_invitations.pending.first.accept!
+      @new_user.famicle_memberships.count.should eql(2)
+      @new_user.default_famicle.should eql(@famicle)
+      @new_user.famicle_memberships.find_by_famicle_id(@another_famicle.id).default.should eql(false)
+    end
+  end
+
 end

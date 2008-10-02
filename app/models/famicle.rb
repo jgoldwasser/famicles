@@ -1,10 +1,14 @@
 class Famicle < ActiveRecord::Base
   validates_presence_of :name
 
+  # Members
   has_many :famicle_memberships
   has_one :creator, :through => :famicle_memberships, :source => :user, :conditions => ["famicle_memberships.role = 'creator'"]
   has_many :members, :through => :famicle_memberships, :source => :user
   has_many :owners, :through => :famicle_memberships, :source => :user, :conditions => ["famicle_memberships.role IN ('creator', 'owner')"]
+
+  # Invitations 
+  has_many :famicle_invitations
 
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}
@@ -25,19 +29,21 @@ class Famicle < ActiveRecord::Base
 
   def invite_member(sender, receiver)
     raise Exception.new("Only Owners can invite members") unless invitation_allowed?(sender)
-    matches = FamicleInvitation.pending(sender.id, receiver.id)
+    invitation = famicle_invitations.pending.find_by_sender_id(sender)
 
-    if matches.blank?
+    if invitation.blank?
       invitation = FamicleInvitation.create!({:famicle => self, :sender => sender, :receiver => receiver, :email => receiver.email, :state => "created"})
       invitation.wait_for_repsonse!
-    else
-      invitation = matches.first
     end
 
     invitation
   end
-  
-private
+
+  def handle_invitation_acceptance(invite)
+    famicle_memberships.create!(:user => invite.receiver, :role => "member", :default => invite.receiver.famicle_memberships.count == 0)
+  end
+
+  private
   def invitation_allowed?(sender)
     owners.include?(sender)
   end

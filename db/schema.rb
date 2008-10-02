@@ -12,11 +12,11 @@
 ActiveRecord::Schema.define(:version => 20080928224629) do
 
   create_table "famicle_invitations", :force => true do |t|
-    t.integer  "famicle_id",                      :null => false
-    t.integer  "sender_id",                       :null => false
+    t.integer  "famicle_id",                             :null => false
+    t.integer  "sender_id",                              :null => false
     t.integer  "receiver_id"
     t.string   "email"
-    t.string   "state",           :default => "", :null => false
+    t.string   "state",           :default => "created", :null => false
     t.string   "invitation_code"
     t.datetime "sent_at"
     t.datetime "accepted_at"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20080928224629) do
   end
 
   create_table "famicle_memberships", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.integer  "famicle_id",                 :null => false
-    t.string   "role",       :default => "", :null => false
-    t.boolean  "default",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "famicle_id",                    :null => false
+    t.string   "role",       :default => "",    :null => false
+    t.boolean  "default",    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

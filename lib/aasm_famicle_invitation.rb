@@ -17,13 +17,13 @@ module AasmFamicleInvitation
       aasm_state :denied,  :enter => :do_deny
 
       aasm_event :wait_for_repsonse do
-        transitions :from => :created, :to => :pending
+        transitions :from => [:created, :user_invited], :to => :pending
       end
       aasm_event :send_invite do
         transitions :from => :created, :to => :user_invited
       end
       aasm_event :accept do
-        transitions :from => :pending, :to => :accepted, :guard => Proc.new {|i| !i.receiver_id.blank?}
+        transitions :from => [:pending, :user_invited], :to => :accepted, :guard => Proc.new {|i| !i.receiver_id.blank?}
       end
 
       aasm_event :deny do
@@ -37,7 +37,9 @@ module AasmFamicleInvitation
 
   module StatefulFamicleInvitationInstanceMethods
     def do_accept
-      receiver.accept_invitation(self)
+      famicle.handle_invitation_acceptance(self)
+      self.accepted_at = DateTime.now
+      save
     end
 
     def invite_user

@@ -6,7 +6,7 @@ describe FamicleMembership do
       :user_id => "1",
       :famicle_id => "1",
       :role => "creator",
-      :default => true
+      :default => false
     }
   end
 
@@ -18,11 +18,10 @@ describe FamicleMembership do
     FamicleMembership.create(@valid_attributes.except(:user_id)).save.should eql(false)
     FamicleMembership.create(@valid_attributes.except(:famicle_id)).save.should eql(false)
     FamicleMembership.create(@valid_attributes.except(:role)).save.should eql(false)
-    FamicleMembership.create(@valid_attributes.except(:default)).save.should eql(false)
   end
 
-  it "should create a new instance with out required attributes" do
-    FamicleMembership.create(@valid_attributes.except(:state)).save.should eql(true)
+  it "should create a new instance with out non-required attributes" do
+    FamicleMembership.create(@valid_attributes.except(:default)).save.should eql(true)
   end
 
   

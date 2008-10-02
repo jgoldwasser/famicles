@@ -2,7 +2,6 @@ class FamicleMembership < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :famicle_id
   validates_presence_of :role
-  validates_presence_of :default
 
   belongs_to :famicle, :dependent => :destroy
   belongs_to :user, :dependent => :destroy

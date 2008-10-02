@@ -7,9 +7,9 @@ class FamicleInvitation < ActiveRecord::Base
   belongs_to :sender, :class_name => "User", :foreign_key => :sender_id
   belongs_to :famicle
 
-  after_create :set_invitation_code
+  before_create :set_invitation_code
 
-  named_scope :pending, lambda { |sender_id, receiver_id| { :conditions => ["state = 'pending' OR state = 'created' AND sender_id = ? AND receiver_id = ?", sender_id, receiver_id] } }
+  named_scope :pending, :conditions => {:state => "pending"}
 
   private
 

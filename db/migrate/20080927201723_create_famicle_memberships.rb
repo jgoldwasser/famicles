@@ -3,7 +3,7 @@ class CreateFamicleMemberships < ActiveRecord::Migration
     create_table :famicle_memberships do |t|
       t.integer :user_id, :famicle_id, :null => false
       t.string :role, :null => false
-      t.boolean :default, :null => false
+      t.boolean :default, :null => false, :default => false
 
       t.timestamps
     end
