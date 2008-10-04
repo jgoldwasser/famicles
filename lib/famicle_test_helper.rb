@@ -12,5 +12,8 @@ module FamicleTestHelper
   def create_relationship_type(options = {})
     RelationshipType.create({ :name => 'Friend', :value => "friend" }.merge(options))
   end
-  
+
+  def create_profile_for_user(user, options = {})
+    Profile.create!({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :gender_public => true})
+  end
 end

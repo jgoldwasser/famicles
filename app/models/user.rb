@@ -57,10 +57,10 @@ class User < ActiveRecord::Base
   has_many :sent_invitations, :class_name => "FamicleInvitation", :foreign_key => :sender_id, :dependent => :destroy
   has_one :default_famicle, :through => :famicle_memberships, :source => :famicle, :conditions => ["famicle_memberships.default = 1"]
   has_many :famicles, :through => :famicle_memberships, :source => :famicle
+  has_one :profile
 
   def accept_invitation_code(code)
     invite = FamicleInvitation.find_by_invitation_code(code)
-    puts "code: #{code} invite blank: #{invite.blank?}"
     return if invite.blank?
     
     invite.receiver_id = self.id

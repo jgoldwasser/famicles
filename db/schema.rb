@@ -9,7 +9,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080928224629) do
+ActiveRecord::Schema.define(:version => 20081004035902) do
+
+  create_table "contact_infos", :force => true do |t|
+    t.integer  "profile_id",                  :null => false
+    t.string   "address"
+    t.string   "city",         :limit => 50
+    t.string   "state",        :limit => 50
+    t.string   "postal_code",  :limit => 20
+    t.string   "land_phone",   :limit => 20
+    t.string   "mobile_phone", :limit => 20
+    t.string   "websites",     :limit => 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.integer  "contact_info_id",                 :null => false
+    t.string   "email",           :default => "", :null => false
+    t.boolean  "validated",                       :null => false
+    t.boolean  "default",                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "famicle_invitations", :force => true do |t|
     t.integer  "famicle_id",                             :null => false
@@ -45,6 +67,14 @@ ActiveRecord::Schema.define(:version => 20080928224629) do
     t.datetime "updated_at"
   end
 
+  create_table "instant_message_accounts", :force => true do |t|
+    t.integer  "contact_info_id",                 :null => false
+    t.string   "name",            :default => "", :null => false
+    t.string   "provider",        :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "passwords", :force => true do |t|
     t.integer  "user_id"
     t.string   "reset_code"
@@ -54,12 +84,25 @@ ActiveRecord::Schema.define(:version => 20080928224629) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "full_name",  :default => "", :null => false
-    t.string   "hometown"
-    t.integer  "gender",                     :null => false
-    t.date     "birthdate",                  :null => false
-    t.text     "about_me"
-    t.string   "timezone",   :default => "", :null => false
+    t.integer  "user_id",                                                    :null => false
+    t.string   "full_name",                :limit => 50,   :default => "",   :null => false
+    t.integer  "gender",                   :limit => 1,                      :null => false
+    t.boolean  "gender_public",                            :default => true
+    t.date     "birthdate",                                                  :null => false
+    t.integer  "public_birthdate_display", :limit => 1,                      :null => false
+    t.string   "timezone",                 :limit => 50,   :default => "",   :null => false
+    t.string   "hometown",                 :limit => 100
+    t.string   "political_view",           :limit => 100
+    t.string   "religious_view",           :limit => 100
+    t.string   "parenting_style",          :limit => 100
+    t.string   "about_me",                 :limit => 2000
+    t.string   "what_i_like",              :limit => 2000
+    t.string   "what_i_do",                :limit => 2000
+    t.string   "favorite_tv",              :limit => 2000
+    t.string   "favorite_music",           :limit => 2000
+    t.string   "favorite_sites",           :limit => 2000
+    t.string   "favorite_movies",          :limit => 2000
+    t.boolean  "public",                                   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

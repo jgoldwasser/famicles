@@ -281,6 +281,10 @@ describe User do
     end
   end
 
+  # Famicles additions below
+  describe 'setup after activation' do
+    it 'should set activation email as default email in contact_info'
+  end
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
