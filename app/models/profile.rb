@@ -11,8 +11,9 @@ class Profile < ActiveRecord::Base
   validates_inclusion_of :public_birthdate_display, :in => [PUBLIC_BIRTHDATE_DISPLAY_FULL, PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR, PUBLIC_BIRTHDATE_DISPLAY_NONE]
 
   belongs_to :user
-  has_one :contact_info
-
+  has_one :contact_info, :dependent => :destroy
+  has_many :high_school_attendances, :dependent => :destroy
+  has_many :high_schools, :through => :high_school_attendances, :source => :high_school
   after_create :setup_models
 
   MALE = 0

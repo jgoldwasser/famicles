@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081004035902) do
+ActiveRecord::Schema.define(:version => 20081005033651) do
 
   create_table "contact_infos", :force => true do |t|
     t.integer  "profile_id",                  :null => false
@@ -63,6 +63,20 @@ ActiveRecord::Schema.define(:version => 20081004035902) do
     t.string   "name",        :default => "",   :null => false
     t.text     "description"
     t.boolean  "public",      :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "high_school_attendances", :force => true do |t|
+    t.integer  "profile_id",     :null => false
+    t.integer  "high_school_id", :null => false
+    t.integer  "class_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "high_schools", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,8 +3,8 @@ class FamicleMembership < ActiveRecord::Base
   validates_presence_of :famicle_id
   validates_presence_of :role
 
-  belongs_to :famicle, :dependent => :destroy
-  belongs_to :user, :dependent => :destroy
+  belongs_to :famicle
+  belongs_to :user
 
 
   def to_s

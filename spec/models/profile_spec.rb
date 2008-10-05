@@ -46,6 +46,33 @@ describe Profile do
     end
   end
 
+  describe 'managing high schools' do
+    before(:each) do
+      @user = create_user
+      @user.activate!
+      @profile = create_profile_for_user(@user)
+      @user.profile = @profile
+    end
+
+    it 'should allow adding and deleting high schools' do
+      @profile.high_schools.count.should eql(0)
+      lambda {
+        hs = HighSchool.create!(:name => "Santana")
+        HighSchoolAttendance.create!(:profile => @profile, :high_school => hs)
+      }.should change(@profile.high_schools, :count).by(1)
+
+      hs2 = HighSchool.create!(:name => "West Hills")
+      HighSchoolAttendance.create!(:profile => @profile, :high_school => hs2)
+      @profile.high_schools.count.should eql(2)
+
+      
+
+    end
+
+    it 'should allow removing highschools' 
+  end
+
+
 end
 # == Schema Info
 # Schema version: 20081004035902
