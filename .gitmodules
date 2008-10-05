@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/acts_as_list"]
 	path = vendor/plugins/acts_as_list
 	url = git://github.com/rails/acts_as_list.git
+[submodule "vendor/plugins/aanotate_models"]
+	path = vendor/plugins/aanotate_models
+	url = git@github.com:jgoldwasser/annotate-models.git
