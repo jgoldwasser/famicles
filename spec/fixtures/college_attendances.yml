@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  profile_id: 1
+  college_id: 1
+  class_year: 1
+  major: MyString
+
+two:
+  profile_id: 1
+  college_id: 1
+  class_year: 1
+  major: MyString
