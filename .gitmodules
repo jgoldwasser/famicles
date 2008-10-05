@@ -10,3 +10,6 @@
 [submodule "vendor/plugins/aanotate_models"]
 	path = vendor/plugins/aanotate_models
 	url = git@github.com:jgoldwasser/annotate-models.git
+[submodule "vendor/plugins/aasm"]
+	path = vendor/plugins/aasm
+	url = git@github.com:jgoldwasser/aasm.git
