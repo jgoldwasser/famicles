@@ -46,7 +46,7 @@ describe Profile do
     end
   end
 
-  describe 'managing high schools' do
+  describe 'managing schools' do
     before(:each) do
       @user = create_user
       @user.activate!
@@ -56,22 +56,53 @@ describe Profile do
 
     it 'should allow adding and deleting high schools' do
       @profile.high_schools.count.should eql(0)
-      lambda {
-        hs = HighSchool.create!(:name => "Santana")
-        HighSchoolAttendance.create!(:profile => @profile, :high_school => hs)
-      }.should change(@profile.high_schools, :count).by(1)
-
-      hs2 = HighSchool.create!(:name => "West Hills")
-      HighSchoolAttendance.create!(:profile => @profile, :high_school => hs2)
+      adding_high_school(@profile, "Santana").should change(@profile.high_schools, :count).by(1)
+      adding_high_school(@profile, "West Hills").should change(@profile.high_schools, :count).by(1)
       @profile.high_schools.count.should eql(2)
-
-      
-
+      @profile.high_school_attendances.first.destroy
+      @profile.high_schools.count.should eql(1)
+      HighSchool.count.should eql(2)
     end
 
-    it 'should allow removing highschools' 
+    it 'should allow adding and removing colleges' do
+      @profile.colleges.count.should eql(0)
+      adding_college(@profile, "Cal Poly").should change(@profile.colleges, :count).by(1)
+      adding_college(@profile, "Grossmont").should change(@profile.colleges, :count).by(1)
+      @profile.colleges.count.should eql(2)
+      @profile.college_attendances.first.destroy
+      @profile.colleges.count.should eql(1)
+      College.count.should eql(2)
+    end
+
+    it 'should remove college attendance when profile is deleted' do
+      adding_college(@profile, "Cal Poly").call
+      adding_college(@profile, "Grossmont").call
+      lambda {@profile.destroy}.should change(CollegeAttendance, :count).by(-2)
+      College.count.should eql(2)
+    end
+
+    it 'should remove high school attendance when profile is deleted' do
+      adding_high_school(@profile, "Cal Poly").call
+      adding_high_school(@profile, "Grossmont").call
+      lambda {@profile.destroy}.should change(HighSchoolAttendance, :count).by(-2)
+      HighSchool.count.should eql(2)
+    end
   end
 
+private
+  def adding_college(profile, college_name)
+    lambda do
+      school = College.create!(:name => college_name)
+      CollegeAttendance.create!(:profile => profile, :college => school)
+    end
+  end
+
+  def adding_high_school(profile, school_name)
+    lambda do
+      school = HighSchool.create!(:name => school_name)
+      HighSchoolAttendance.create!(:profile => profile, :high_school => school)
+    end
+  end
 
 end
 # == Schema Info

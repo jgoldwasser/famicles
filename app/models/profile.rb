@@ -13,7 +13,10 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   has_one :contact_info, :dependent => :destroy
   has_many :high_school_attendances, :dependent => :destroy
+  has_many :college_attendances, :dependent => :destroy
   has_many :high_schools, :through => :high_school_attendances, :source => :high_school
+  has_many :colleges, :through => :college_attendances, :source => :college
+
   after_create :setup_models
 
   MALE = 0

@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081005033651) do
+ActiveRecord::Schema.define(:version => 20081005051914) do
+
+  create_table "college_attendances", :force => true do |t|
+    t.integer  "profile_id", :null => false
+    t.integer  "college_id", :null => false
+    t.integer  "class_year"
+    t.string   "major"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "colleges", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contact_infos", :force => true do |t|
     t.integer  "profile_id",                  :null => false
