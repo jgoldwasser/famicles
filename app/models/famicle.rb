@@ -49,7 +49,7 @@ class Famicle < ActiveRecord::Base
   end
 end
 # == Schema Info
-# Schema version: 20081004035902
+# Schema version: 20081005033651
 #
 # Table name: famicles
 #
