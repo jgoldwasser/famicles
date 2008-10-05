@@ -3,3 +3,14 @@ class RelationshipType < ActiveRecord::Base
   validates_uniqueness_of :name
 
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: relationship_types
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)     not null, default("")
+#  value      :string(255)     not null, default("")
+#  created_at :datetime
+#  updated_at :datetime
+

@@ -91,3 +91,15 @@ describe Famicle do
   end
 
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: famicles
+#
+#  id          :integer(4)      not null, primary key
+#  description :text
+#  name        :string(255)     not null, default("")
+#  public      :boolean(1)      not null, default(TRUE)
+#  created_at  :datetime
+#  updated_at  :datetime
+

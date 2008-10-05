@@ -153,3 +153,21 @@ describe FamicleInvitation do
   end
 
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: famicle_invitations
+#
+#  id              :integer(4)      not null, primary key
+#  famicle_id      :integer(4)      not null
+#  receiver_id     :integer(4)
+#  sender_id       :integer(4)      not null
+#  email           :string(255)
+#  invitation_code :string(255)
+#  state           :string(255)     not null, default("created")
+#  accepted_at     :datetime
+#  created_at      :datetime
+#  declined_at     :datetime
+#  sent_at         :datetime
+#  updated_at      :datetime
+

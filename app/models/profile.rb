@@ -5,6 +5,11 @@ class Profile < ActiveRecord::Base
   validates_presence_of :gender
   validates_presence_of :timezone
 
+  PUBLIC_BIRTHDATE_DISPLAY_FULL = 1
+  PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR = 2
+  PUBLIC_BIRTHDATE_DISPLAY_NONE = 3
+  validates_inclusion_of :public_birthdate_display, :in => [PUBLIC_BIRTHDATE_DISPLAY_FULL, PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR, PUBLIC_BIRTHDATE_DISPLAY_NONE]
+
   belongs_to :user
   has_one :contact_info
 
@@ -13,9 +18,7 @@ class Profile < ActiveRecord::Base
   MALE = 0
   EMALE = 1
 
-  PUBLIC_BIRTHDATE_DISPLAY_FULL = 1
-  PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR = 2
-  PUBLIC_BIRTHDATE_DISPLAY_NONE = 3
+
 
 private
   def setup_models
@@ -23,3 +26,31 @@ private
     self.contact_info.initialize_default_email
   end
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: profiles
+#
+#  id                       :integer(4)      not null, primary key
+#  user_id                  :integer(4)      not null
+#  about_me                 :string(2000)
+#  birthdate                :date            not null
+#  favorite_movies          :string(2000)
+#  favorite_music           :string(2000)
+#  favorite_sites           :string(2000)
+#  favorite_tv              :string(2000)
+#  full_name                :string(50)      not null, default("")
+#  gender                   :integer(1)      not null
+#  gender_public            :boolean(1)      default(TRUE)
+#  hometown                 :string(100)
+#  parenting_style          :string(100)
+#  political_view           :string(100)
+#  public                   :boolean(1)      default(TRUE)
+#  public_birthdate_display :integer(1)      not null
+#  religious_view           :string(100)
+#  timezone                 :string(50)      not null, default("")
+#  what_i_do                :string(2000)
+#  what_i_like              :string(2000)
+#  created_at               :datetime
+#  updated_at               :datetime
+

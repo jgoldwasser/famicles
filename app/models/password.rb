@@ -11,4 +11,15 @@ class Password < ActiveRecord::Base
     self.reset_code = Digest::SHA1.hexdigest(Time.now.to_s.split(//).sort_by {rand}.join )
     self.expiration_date = 2.weeks.from_now
   end
-end
+end# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: passwords
+#
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  expiration_date :datetime
+#  reset_code      :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+

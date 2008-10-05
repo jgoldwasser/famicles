@@ -69,3 +69,15 @@ describe Relationship, ".link between two users" do
 
 
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: relationships
+#
+#  id                   :integer(4)      not null, primary key
+#  related_to_id        :integer(4)      not null
+#  relationship_type_id :integer(4)      not null
+#  user_id              :integer(4)      not null
+#  created_at           :datetime
+#  updated_at           :datetime
+

@@ -20,3 +20,15 @@ describe InstantMessageAccount do
   end
 
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: instant_message_accounts
+#
+#  id              :integer(4)      not null, primary key
+#  contact_info_id :integer(4)      not null
+#  name            :string(255)     not null, default("")
+#  provider        :string(255)     not null, default("")
+#  created_at      :datetime
+#  updated_at      :datetime
+

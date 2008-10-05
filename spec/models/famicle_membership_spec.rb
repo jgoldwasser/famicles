@@ -26,3 +26,16 @@ describe FamicleMembership do
 
   
 end
+# == Schema Info
+# Schema version: 20081004035902
+#
+# Table name: famicle_memberships
+#
+#  id         :integer(4)      not null, primary key
+#  famicle_id :integer(4)      not null
+#  user_id    :integer(4)      not null
+#  default    :boolean(1)      not null
+#  role       :string(255)     not null, default("")
+#  created_at :datetime
+#  updated_at :datetime
+
