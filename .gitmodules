@@ -13,3 +13,9 @@
 [submodule "vendor/plugins/annotate_models"]
 	path = vendor/plugins/annotate_models
 	url = git@github.com:jgoldwasser/annotate-models.git
+[submodule "vendor/plugins/rspec"]
+	path = vendor/plugins/rspec
+	url = git@github.com:jgoldwasser/rspec.git
+[submodule "vendor/plugins/rspec-rails"]
+	path = vendor/plugins/rspec-rails
+	url = git@github.com:jgoldwasser/rspec-rails.git
