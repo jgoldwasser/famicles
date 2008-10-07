@@ -16,6 +16,8 @@ class Profile < ActiveRecord::Base
   has_many :college_attendances, :dependent => :destroy
   has_many :high_schools, :through => :high_school_attendances, :source => :high_school
   has_many :colleges, :through => :college_attendances, :source => :college
+  has_many :employments, :dependent => :destroy
+  has_many :employers, :through => :employments, :source => :employer
 
   after_create :setup_models
 

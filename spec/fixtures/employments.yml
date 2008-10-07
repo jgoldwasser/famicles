@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  profile_id: 1
+  employer_id: 1
+  position: MyString
+  location: MyString
+  start: MyString
+  end: MyString
+  description: MyString
+
+two:
+  profile_id: 1
+  employer_id: 1
+  position: MyString
+  location: MyString
+  start: MyString
+  end: MyString
+  description: MyString

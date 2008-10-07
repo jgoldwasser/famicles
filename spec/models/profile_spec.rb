@@ -46,7 +46,7 @@ describe Profile do
     end
   end
 
-  describe 'managing schools' do
+  describe 'managing schools and jobs' do
     before(:each) do
       @user = create_user
       @user.activate!
@@ -74,6 +74,16 @@ describe Profile do
       College.count.should eql(2)
     end
 
+    it 'should allow adding and removing jobs' do
+      @profile.employers.count.should eql(0)
+      adding_employer(@profile, "Starbucks").should change(@profile.employers, :count).by(1)
+      adding_employer(@profile, "Home Depot").should change(@profile.employers, :count).by(1)
+      @profile.employers.count.should eql(2)
+      @profile.employments.first.destroy
+      @profile.employers.count.should eql(1)
+      Employer.count.should eql(2)
+    end
+
     it 'should remove college attendance when profile is deleted' do
       adding_college(@profile, "Cal Poly").call
       adding_college(@profile, "Grossmont").call
@@ -86,6 +96,13 @@ describe Profile do
       adding_high_school(@profile, "Grossmont").call
       lambda {@profile.destroy}.should change(HighSchoolAttendance, :count).by(-2)
       HighSchool.count.should eql(2)
+    end
+
+    it 'should remove employment when profile is deleted' do
+      adding_employer(@profile, "Starbucks").call
+      adding_employer(@profile, "Home Depot").call
+      lambda {@profile.destroy}.should change(Employment, :count).by(-2)
+      Employer.count.should eql(2)
     end
   end
 
@@ -101,6 +118,13 @@ private
     lambda do
       school = HighSchool.create!(:name => school_name)
       HighSchoolAttendance.create!(:profile => profile, :high_school => school)
+    end
+  end
+
+  def adding_employer(profile, employer_name)
+    lambda do
+      employer = Employer.create!(:name => employer_name)
+      Employment.create!(:profile => profile, :employer => employer)
     end
   end
 

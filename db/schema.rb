@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081005051914) do
+ActiveRecord::Schema.define(:version => 20081007031845) do
 
   create_table "college_attendances", :force => true do |t|
     t.integer  "profile_id", :null => false
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(:version => 20081005051914) do
     t.string   "email",           :default => "", :null => false
     t.boolean  "validated",                       :null => false
     t.boolean  "default",                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employers", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employments", :force => true do |t|
+    t.integer  "profile_id",                 :null => false
+    t.integer  "employer_id",                :null => false
+    t.string   "position",    :limit => 100
+    t.string   "location",    :limit => 50
+    t.string   "start",       :limit => 20
+    t.string   "end",         :limit => 20
+    t.string   "description", :limit => 500
     t.datetime "created_at"
     t.datetime "updated_at"
   end
