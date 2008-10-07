@@ -15,3 +15,13 @@ describe Employer do
     Employer.create(@valid_attributes.except(:name)).save.should eql(false)
   end
 end
+# == Schema Info
+# Schema version: 20081007031845
+#
+# Table name: employers
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)     not null, default("")
+#  created_at :datetime
+#  updated_at :datetime
+

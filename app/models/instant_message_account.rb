@@ -5,7 +5,7 @@ class InstantMessageAccount < ActiveRecord::Base
 
 end
 # == Schema Info
-# Schema version: 20081005033651
+# Schema version: 20081007031845
 #
 # Table name: instant_message_accounts
 #

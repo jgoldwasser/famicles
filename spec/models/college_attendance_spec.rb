@@ -24,3 +24,16 @@ describe CollegeAttendance do
     CollegeAttendance.create(@valid_attributes.except(:major)).save.should eql(true)
   end
 end
+# == Schema Info
+# Schema version: 20081007031845
+#
+# Table name: college_attendances
+#
+#  id         :integer(4)      not null, primary key
+#  college_id :integer(4)      not null
+#  profile_id :integer(4)      not null
+#  class_year :integer(4)
+#  major      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+

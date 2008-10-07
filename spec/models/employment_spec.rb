@@ -30,3 +30,19 @@ describe Employment do
     Employment.create(@valid_attributes.except(:description)).save.should eql(true)
   end
 end
+# == Schema Info
+# Schema version: 20081007031845
+#
+# Table name: employments
+#
+#  id          :integer(4)      not null, primary key
+#  employer_id :integer(4)      not null
+#  profile_id  :integer(4)      not null
+#  description :string(500)
+#  end         :string(20)
+#  location    :string(50)
+#  position    :string(100)
+#  start       :string(20)
+#  created_at  :datetime
+#  updated_at  :datetime
+
