@@ -29,9 +29,6 @@ describe ContactInfo do
     ContactInfo.create(@valid_attributes.except(:address, :city)).save.should eql(true)
   end
 
-  describe 'cleanup after profile deletion' do
-    it 'should remove contact info record'
-  end
 
 #  describe 'adding an email address' do
 #    contact_info = ContactInfo.create!(@valid_attributes)

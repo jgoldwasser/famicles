@@ -34,24 +34,9 @@ describe Profile do
     Profile.create(@valid_attributes.except(:hometown, :about_me)).save.should eql(true)
   end
 
-  describe 'being set by a new user' do
-    it 'should have one email set as default and activated' do
-      user = create_user
-      user.activate!
-      profile = create_profile_for_user(user)
-      user.profile = profile
-      user.profile.contact_info.email_addresses.count.should eql(1)
-      user.profile.contact_info.email_addresses.first.default.should eql(true)
-      user.profile.contact_info.email_addresses.first.validated.should eql(true)
-    end
-  end
-
   describe 'managing schools and jobs' do
     before(:each) do
-      @user = create_user
-      @user.activate!
-      @profile = create_profile_for_user(@user)
-      @user.profile = @profile
+      setup_user_with_profile
     end
 
     it 'should allow adding and deleting high schools' do
@@ -103,6 +88,29 @@ describe Profile do
       adding_employer(@profile, "Home Depot").call
       lambda {@profile.destroy}.should change(Employment, :count).by(-2)
       Employer.count.should eql(2)
+    end
+  end
+
+  describe 'managing contact info' do
+    before(:each) do
+      setup_user_with_profile
+    end
+
+    it 'should have the default email set on new user' do
+      @user.profile.contact_info.email_addresses.count.should eql(1)
+      @user.profile.contact_info.email_addresses.first.default.should eql(true)
+      @user.profile.contact_info.email_addresses.first.validated.should eql(true)
+    end
+
+    it 'should remove contact info after profile is deleted' do
+      lambda{@user.profile.destroy}.should change(ContactInfo, :count).by(-1)
+    end
+
+    it 'should allow multiple emails' do
+      lambda {
+        address = @user.profile.contact_info.email_addresses.build(:email => "additional@example.com", :validated => "false", :default => "false")
+        address.save
+      }.should change(@user.profile.contact_info.email_addresses, :count).by(1)
     end
   end
 
