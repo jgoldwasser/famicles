@@ -1,5 +1,5 @@
 development: &non_production_settings
-  site_url: http://10.200.1.25/fam
+  site_url: http://fam
   site_name: Famicles
   admin_email: joe@jnmsolutions.com
   

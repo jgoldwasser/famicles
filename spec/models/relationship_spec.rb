@@ -29,8 +29,8 @@ end
 
 describe Relationship, ".link between two users" do
   before(:each) do
-    @user1 = create_user(:login => "user1")
-    @user2 = create_user(:login => "user2")
+    @user1 = create_user(:email => "user1@example.com")
+    @user2 = create_user(:email => "user2@example.com")
 
     @friend = create_relationship_type(:name => "Friend", :value => "friend")
     @mom = create_relationship_type(:name => "Mom", :value => "mother")

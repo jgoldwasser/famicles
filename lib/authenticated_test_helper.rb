@@ -5,14 +5,14 @@ module AuthenticatedTestHelper
   end
 
   def authorize_as(user)
-    @request.env["HTTP_AUTHORIZATION"] = user ? ActionController::HttpAuthentication::Basic.encode_credentials(users(user).login, 'monkey') : nil
+    @request.env["HTTP_AUTHORIZATION"] = user ? ActionController::HttpAuthentication::Basic.encode_credentials(users(user).email, 'monkey') : nil
   end
 
   def create_user(options = {})
-    if options[:login]
-      record = User.new({ :login => 'quire', :email => "#{options[:login]}@quire69.com", :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    if options[:email]
+      record = User.new({ :email => "#{options[:email]}", :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
     else
-      record = User.new({ :login => 'quire', :email => "quire@quire69.com", :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+      record = User.new({ :email => "quire@quire69.com", :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
     end
 
     record.register! if record.valid?
@@ -26,7 +26,7 @@ module AuthenticatedTestHelper
   # rspec
   def mock_user
     user = mock_model(User, :id => 1,
-      :login  => 'user_name',
+      :email  => 'user@example.com',
       :name   => 'U. Surname',
       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
       :errors => [])

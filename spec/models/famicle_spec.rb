@@ -55,9 +55,9 @@ describe Famicle do
 
   describe "managing and finding members" do
     before(:each) do
-      @creator = create_user({:login => "creator"})
-      @owner = create_user({:login => "owner1"})
-      @member = create_user({:login => "member"})
+      @creator = create_user({:email => "creator@example.com"})
+      @owner = create_user({:email => "owner1@example.com"})
+      @member = create_user({:email => "member@examle.com"})
       @famicle = create_famicle(@creator)
       add_member_to_famicle(@famicle, @owner, "owner")
       add_member_to_famicle(@famicle, @member, "member")

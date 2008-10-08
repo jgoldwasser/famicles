@@ -180,7 +180,6 @@ ActiveRecord::Schema.define(:version => 20081007031845) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100, :default => ""
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
@@ -195,6 +194,6 @@ ActiveRecord::Schema.define(:version => 20081007031845) do
     t.datetime "deleted_at"
   end
 
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

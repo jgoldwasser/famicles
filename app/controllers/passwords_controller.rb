@@ -38,8 +38,7 @@ class PasswordsController < ApplicationController
   def update_after_forgetting
     password = Password.find_by_reset_code(params[:reset_code])
     @user = password.user
-    logger.debug("@@@ params #{params}")
-    if @user.update_attributes(params[:user]) && params[:confirmationpassword].nil? == false
+    if @user.update_attributes(params[:user]) && params[:user]["password_confirmation"].nil? == false
       flash[:notice] = 'Password was successfully updated.'
       redirect_to(login_url)
     else
