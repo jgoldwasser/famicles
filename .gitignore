@@ -4,3 +4,6 @@
 *.ipr
 *.iws
 log/*.log
+tmp/test_images/*
+coverage
+doc/spec*.*

@@ -3,8 +3,23 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include AuthenticatedTestHelper
 include FamicleTestHelper
 
+TEST_DIR = "tmp/test_images"
+
 describe Profile do
+  before(:all) do
+    ProfilePhoto.attachment_options[:path_prefix] =
+        "#{TEST_DIR}/images"
+    @image = ProfilePhoto.new :uploaded_data =>
+        fixture_file_upload("images/profile.jpg", "image/jpg")
+  end
+
+  after(:all) do
+    #@image.destroy
+    #FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
+  end
+
   before(:each) do
+
     @valid_attributes = {
         :user_id => 1,
         :full_name => "Curt Zee",
@@ -14,7 +29,8 @@ describe Profile do
         :birthdate => 23.years.ago,
         :public_birthdate_display => 1,
         :about_me => "value for about_me",
-        :timezone => "Pacific Time (US & Canada)"
+        :timezone => "Pacific Time (US & Canada)",
+        :profile_photo => @image
     }
   end
 
@@ -35,6 +51,11 @@ describe Profile do
   end
 
   describe 'managing schools and jobs' do
+    before(:all) do
+      HighSchool.delete_all
+      College.delete_all
+      Employer.delete_all
+    end
     before(:each) do
       setup_user_with_profile
     end
@@ -114,7 +135,7 @@ describe Profile do
     end
   end
 
-private
+  private
   def adding_college(profile, college_name)
     lambda do
       school = College.create!(:name => college_name)

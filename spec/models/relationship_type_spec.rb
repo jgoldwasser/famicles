@@ -2,9 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe RelationshipType do
   it "should not allow duplicate names" do
-    create_type(:name => "Mom").save
+    create_type(:name => "Mom", :value => "mother").save
     lambda {
-      create_type(:name => "Mom").save
+      create_type(:name => "Mom", :value => "mother").save
     }.should_not change(RelationshipType, :count)
   end
 

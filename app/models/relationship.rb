@@ -3,6 +3,8 @@ class Relationship < ActiveRecord::Base
   validates_presence_of :relationship_type_id
 
   belongs_to :relationship_type
+  belongs_to :user
+  belongs_to :relative, :class_name => "User", :foreign_key => "related_to_id"
   
   def self.relate_users(inviter, invitee, relationship_type)
     return unless inviter.relationships.find_by_related_to_id(invitee.id).nil?

@@ -37,6 +37,31 @@ old_password_holder:
 
 
   state:                     active
+
+joe:
+  id:                        4
+  email:                     joe@example.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          2fe16d4b8612705159366e047ee22ba79f4d96f4 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
+  activation_code:
+  activated_at:              <%= 5.days.ago.to_s :db %>
+  state:                     active
+
+joes_mom:
+  id:                        5
+  email:                     joes_mom@example.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          2fe16d4b8612705159366e047ee22ba79f4d96f4 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
+  activation_code:
+  activated_at:              <%= 5.days.ago.to_s :db %>
+  state:                     active
+
 # == Schema Info
 # Schema version: 20081007031845
 #

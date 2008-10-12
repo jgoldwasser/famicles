@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/attachment_fu"]
 	path = vendor/plugins/attachment_fu
 	url = git@github.com:jgoldwasser/attachment_fu.git
+[submodule "vendor/plugins/rspec-rails-mocha"]
+	path = vendor/plugins/rspec-rails-mocha
+	url = git@github.com:jgoldwasser/rspec-rails-mocha.git

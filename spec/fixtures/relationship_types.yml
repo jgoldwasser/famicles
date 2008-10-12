@@ -1,10 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+friend:
+  name: Friend
+  value: friend
 
-two:
-  name: MyString
+mother:
+  name: Mom
+  value: mother
 # == Schema Info
 # Schema version: 20081007031845
 #

@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+goldwasser:
+  name: The Goldwassers
   description: MyText
 
-two:
-  name: MyString
+lie:
+  name: The Lies
   description: MyText
 # == Schema Info
 # Schema version: 20081007031845

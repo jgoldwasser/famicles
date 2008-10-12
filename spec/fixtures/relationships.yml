@@ -1,12 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  user_id: 
-  relationship_type_id: 
+joe_to_mom:
+  user: joe
+  relative: joes_mom
+  relationship_type: mother
 
-two:
-  user_id: 
-  relationship_type_id: 
 # == Schema Info
 # Schema version: 20081007031845
 #

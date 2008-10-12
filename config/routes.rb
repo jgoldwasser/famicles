@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :passwords
   map.resource :session
+  map.resources :profiles
 
   map.root :controller => 'sessions', :action => 'new'
   # The priority is based upon order of creation: first created -> highest priority.
