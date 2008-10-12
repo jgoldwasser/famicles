@@ -10,7 +10,7 @@ two:
   high_school_id: 1
   class_year: 1
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: high_school_attendances
 #

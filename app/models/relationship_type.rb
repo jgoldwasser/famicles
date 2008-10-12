@@ -5,8 +5,9 @@ class RelationshipType < ActiveRecord::Base
   validates_uniqueness_of :value
 
 end
+
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: relationship_types
 #
@@ -15,5 +16,4 @@ end
 #  value      :string(255)     not null, default("")
 #  created_at :datetime
 #  updated_at :datetime
-
 

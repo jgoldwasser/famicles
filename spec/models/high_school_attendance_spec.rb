@@ -24,7 +24,7 @@ describe HighSchoolAttendance do
 
 end
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: high_school_attendances
 #

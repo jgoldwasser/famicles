@@ -6,7 +6,7 @@ class HighSchoolAttendance < ActiveRecord::Base
   belongs_to :high_school
 end
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: high_school_attendances
 #

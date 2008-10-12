@@ -14,8 +14,8 @@ describe Profile do
   end
 
   after(:all) do
-    #@image.destroy
-    #FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
+    @image.destroy
+    FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
   end
 
   before(:each) do
@@ -159,7 +159,7 @@ describe Profile do
 
 end
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: profiles
 #

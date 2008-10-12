@@ -2,7 +2,7 @@ class Employer < ActiveRecord::Base
   validates_presence_of :name
 end
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: employers
 #

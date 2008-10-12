@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
 
 end
 # == Schema Info
-# Schema version: 20081007031845
+# Schema version: 20081011041853
 #
 # Table name: users
 #
@@ -86,7 +86,6 @@ end
 #  activation_code           :string(40)
 #  crypted_password          :string(40)
 #  email                     :string(100)
-#  login                     :string(40)
 #  name                      :string(100)     default("")
 #  remember_token            :string(40)
 #  salt                      :string(40)
