@@ -1,4 +1,4 @@
-class ProfileController < ApplicationController
+class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(params[:profile])

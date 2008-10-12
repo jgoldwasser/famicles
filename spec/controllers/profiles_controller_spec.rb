@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include AuthenticatedTestHelper
 include FamicleTestHelper
 
-describe ProfileController, "creating a new profile" do
+describe ProfilesController, "creating a new profile" do
   integrate_views
 
   before(:each) do
