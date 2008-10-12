@@ -1,0 +1,11 @@
+%h1 My Famicle Member Profile
+
+#general_information
+  %fieldset
+    - form_for(:profile) do |f|
+      %p
+        = label_tag 'full_name'
+        %br
+        = f.text_field :full_name
+
+      = submit_tag 'Save'
