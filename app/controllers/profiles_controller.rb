@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
 
+  before_filter :login_required
+  
   def create
     @profile = Profile.new(params[:profile])
     if @profile.save

@@ -8,6 +8,7 @@ describe ProfilesController, "creating a new profile" do
 
   before(:each) do
     Profile.any_instance.stubs(:birthdate).returns(20.years.ago.to_date)
+    ProfilesController.any_instance.stubs(:login_required).returns(true)
   end
 
   it "should redirect to index with a notice on successful save" do
