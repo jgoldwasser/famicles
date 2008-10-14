@@ -5,6 +5,8 @@ class Profile < ActiveRecord::Base
   validates_presence_of :gender
   validates_presence_of :timezone
 
+  validates_associated :contact_info
+
   PUBLIC_BIRTHDATE_DISPLAY_FULL = 1
   PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR = 2
   PUBLIC_BIRTHDATE_DISPLAY_NONE = 3
@@ -22,16 +24,22 @@ class Profile < ActiveRecord::Base
   has_many :colleges, :through => :college_attendances, :source => :college
   has_many :employers, :through => :employments, :source => :employer
 
-  after_create :setup_models
 
   MALE = 0
   FEMALE = 1
 
-private
-  def setup_models
-    self.contact_info =  ContactInfo.create!(:profile => self)
-    self.contact_info.initialize_default_email
+  def contact_info_data=(attributes)
+    if contact_info.nil?
+      self.contact_info = ContactInfo.new(attributes)
+      self.contact_info.profile = self
+      self.contact_info.email_addresses.build(:contact_info => self.contact_info, :email => self.user.email, :validated => true, :default => true)
+    else
+      self.contact_info.update_attributes(attributes)
+    end
+
   end
+  
+  private
 end
 # == Schema Info
 # Schema version: 20081011041853

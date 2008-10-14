@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-
   before_filter :login_required
   
   def create
@@ -13,6 +12,6 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = Profile.new
+    @profile = Profile.new(:user_id => current_user.id)
   end
 end

@@ -1,0 +1,8 @@
+#contact_info
+  //- new_or_existing = contact_info.new_record? ? 'new' : 'existing'
+  //- prefix = "profile[#{new_or_existing}_contact_info]"
+
+  - fields_for 'profile[contact_info_data]', @profile.contact_info do |contact_form|
+    %p
+      Land Phone:
+      = contact_form.text_field :land_phone 

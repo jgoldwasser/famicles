@@ -1,12 +1,34 @@
 %h1 My Famicle Member Profile
 
+= error_messages_for :profile
+
 #general_information
   %fieldset
-    - form_for(:profile) do |f|
+    - form_for @profile do |f|
+      = f.hidden_field :user_id
       %p
         = label_tag 'full_name'
         %br
         = f.text_field :full_name
-      
+      %p
+        = label_tag 'birthdate'
+        %br
+        = f.text_field :birthdate
+      %p
+        = label_tag 'gender'
+        %br
+        = f.text_field :gender
+      %p
+        = label_tag 'timezone'
+        %br
+        = f.text_field :timezone
+      %p
+        = label_tag 'public_birthdate_display'
+        %br
+        = f.text_field :public_birthdate_display
+
+
+      = render :partial => 'contact_info', :object => @profile.contact_info
+
 
       = submit_tag 'Save'
