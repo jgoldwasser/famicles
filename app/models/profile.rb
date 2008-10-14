@@ -28,17 +28,22 @@ class Profile < ActiveRecord::Base
   MALE = 0
   FEMALE = 1
 
+  # Virtual Attributes - these are used to save collections and models belonging to a profile
   def contact_info_data=(attributes)
     if contact_info.nil?
-      self.contact_info = ContactInfo.new(attributes)
-      self.contact_info.profile = self
+      self.contact_info = ContactInfo.new(attributes.merge(:profile => self))
       self.contact_info.email_addresses.build(:contact_info => self.contact_info, :email => self.user.email, :validated => true, :default => true)
     else
       self.contact_info.update_attributes(attributes)
     end
-
   end
-  
+
+  def new_high_school_attendance_attributes=(hs_attributes)
+    hs_attributes.each do |attributes|
+      high_school_attendances.build(attributes.merge({:profile => self}))
+    end
+  end
+
   private
 end
 # == Schema Info

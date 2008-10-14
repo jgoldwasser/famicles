@@ -1,9 +1,13 @@
 class HighSchoolAttendance < ActiveRecord::Base
-  validates_presence_of :profile_id
-  validates_presence_of :high_school_id
+  validates_presence_of :profile
+  validates_presence_of :high_school
 
   belongs_to :profile
   belongs_to :high_school
+
+  def high_school_data=(attributes)
+    self.high_school = HighSchool.find_or_initialize_by_name(attributes)
+  end
 end
 # == Schema Info
 # Schema version: 20081011041853
