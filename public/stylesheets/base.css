@@ -1,3 +1,6 @@
+textarea {
+  height: 50px;
+}
 /* === FLASH MESSAGES === */
 div#flash-notice {
 

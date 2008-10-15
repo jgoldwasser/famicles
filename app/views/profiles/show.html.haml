@@ -1,0 +1,8 @@
+%h1 Profile View
+
+%h2= "#{@profile.full_name} ID: #{@profile.id}"
+
+
+= link_to 'Edit', edit_profile_path(@profile)
+|
+= link_to 'Back', profiles_path

@@ -2,10 +2,9 @@
 - prefix = "profile[#{new_or_existing}_high_school_attendance_attributes][]"
 
 - fields_for prefix, high_school_attendance do |hsa_form|
-  - fields_for "#{prefix}[high_school_data]", high_school_attendance.high_school do |hs_form|
-    %p
-      High School:
-      = hs_form.text_field :name
+  %p
+    = label_tag 'High School:'
+    = hsa_form.text_field :high_school_name
   %p
     = label_tag 'Class Year:'
     = hsa_form.text_field :class_year

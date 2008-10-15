@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
   validates_presence_of :timezone
 
   validates_associated :contact_info
+  validates_associated :high_school_attendances
 
   PUBLIC_BIRTHDATE_DISPLAY_FULL = 1
   PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR = 2
@@ -24,6 +25,8 @@ class Profile < ActiveRecord::Base
   has_many :colleges, :through => :college_attendances, :source => :college
   has_many :employers, :through => :employments, :source => :employer
 
+
+  after_update :save_attendances
 
   MALE = 0
   FEMALE = 1
@@ -44,7 +47,25 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def existing_high_school_attendance_attributes=(hs_attributes)
+    high_school_attendances.reject(&:new_record?).each do |attendance|
+      attributes = hs_attributes[attendance.id.to_s]
+      if attributes
+        attendance.attributes = attributes
+        attendance.high_school = HighSchool.find_or_initialize_by_name(attributes[:hs_name])
+      else
+        high_school_attendances.delete(attendance)
+      end
+    end
+  end
+
   private
+
+  def save_attendances
+    high_school_attendances.each do |attendance|
+      attendance.save(false)
+    end
+  end
 end
 # == Schema Info
 # Schema version: 20081011041853

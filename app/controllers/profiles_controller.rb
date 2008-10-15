@@ -1,6 +1,28 @@
 class ProfilesController < ApplicationController
   before_filter :login_required
-  
+
+  # GET /profiles
+  # GET /profiles.xml
+  def index
+    @profiles = Profile.find(:all)
+
+    respond_to do |wants|
+      wants.html # index.html.erb
+      wants.xml  { render :xml => @childrens }
+    end
+  end
+
+  # GET /profiles/1
+  # GET /profiles/1.xml
+  def show
+    @profile = Profile.find(params[:id])
+
+    respond_to do |wants|
+      wants.html # show.html.erb
+      wants.xml  { render :xml => @profile }
+    end
+  end
+
   def create
     @profile = Profile.new(params[:profile])
     if @profile.save
@@ -26,7 +48,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     if @profile.update_attributes(params[:profile])
       flash[:notice] = "Successfully updated profile and high schools"
-      redirect_to_profile_path(@profile)
+      redirect_to profile_path(@profile)
     else
       render :action => :edit
     end

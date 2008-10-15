@@ -10,8 +10,13 @@
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<%= stylesheet_link_tag 'base' %>
-		<%= javascript_include_tag "jquery", "application" %>
-
+		<%= javascript_include_tag "jquery", "application", "plugins/prettyComments" %>
+      <script type="text/javascript" charset="utf-8">
+          $(document).ready(function(){
+            $('textarea').prettyComments({animate: false, maxHeight:300});
+          });
+        </script>
+    
   </head>
 	<body>
 		<div id="container">
