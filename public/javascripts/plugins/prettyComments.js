@@ -9,7 +9,7 @@
 			   long as you leave my infos at the top.
 ------------------------------------------------------------------------- */
 
-	$.fn.prettyComments = function(settings) {
+	jQuery.fn.prettyComments = function(settings) {
 		settings = jQuery.extend({
 					animate: false, /* If you set it to true, cursor will dissapear in FF3 */
 					animationSpeed: 'fast', /* fast/slow/normal */
@@ -19,46 +19,46 @@
 				}, settings);
 
 		// Create the div in which the content will be copied
-		$('body').append('<div id="comment_hidden"></div>');
+		jQuery('body').append('<div id="comment_hidden"></div>');
 
 		var setCSS = function(which){
 			// Init the div for the current textarea
-			$("#comment_hidden").css({
+			jQuery("#comment_hidden").css({
 				'position':'absolute',
 				'top': -10000,
 				'left': -10000,
-				'width': $(which).width(),
-				'min-height': $(which).height(),
-				'font-family': $(which).css('font-family'),
-				'font-size': $(which).css('font-size'),
-				'line-height': $(which).css('line-height')
+				'width': jQuery(which).width(),
+				'min-height': jQuery(which).height(),
+				'font-family': jQuery(which).css('font-family'),
+				'font-size': jQuery(which).css('font-size'),
+				'line-height': jQuery(which).css('line-height')
 			});
 			
-			if($.browser.msie && parseFloat($.browser.version) < 7){
-				$("#comment_hidden").css('height',$(which).height());
+			if(jQuery.browser.msie && parseFloat(jQuery.browser.version) < 7){
+				jQuery("#comment_hidden").css('height',jQuery(which).height());
 			};
 		};
 		
 		var copyContent = function(which){
 			// Convert the line feeds into BRs
-			theValue = $(which).attr('value') || "";
+			theValue = jQuery(which).attr('value') || "";
 			theValue = theValue.replace(/\n/g,'<br />');
 			
-			$("#comment_hidden").html(theValue + '<br />');
+			jQuery("#comment_hidden").html(theValue + '<br />');
 			
 			if(!settings.init){
-				if($("#comment_hidden").height() > $(which).height()){
-					if($('#comment_hidden').height() > settings.maxHeight){
-						$(which).css('overflow-y','scroll');
+				if(jQuery("#comment_hidden").height() > jQuery(which).height()){
+					if(jQuery('#comment_hidden').height() > settings.maxHeight){
+						jQuery(which).css('overflow-y','scroll');
 					}else{
-						$(which).css('overflow-y','hidden');
+						jQuery(which).css('overflow-y','hidden');
 						expand(which);
 					};
-				}else if($("#comment_hidden").height() < $(which).height()){
-					if($('#comment_hidden').height() > settings.maxHeight){
-						$(which).css('overflow-y','scroll');
+				}else if(jQuery("#comment_hidden").height() < jQuery(which).height()){
+					if(jQuery('#comment_hidden').height() > settings.maxHeight){
+						jQuery(which).css('overflow-y','scroll');
 					}else{
-						$(which).css('overflow-y','hidden');
+						jQuery(which).css('overflow-y','hidden');
 						shrink(which);
 					};
 				};
@@ -68,44 +68,44 @@
 		var expand = function(which){
 			if(settings.animate && !settings.alreadyAnimated){
 				settings.alreadyAnimated = true;
-				$(which).animate({'height':$("#comment_hidden").height()},settings.animationSpeed,function(){
+				jQuery(which).animate({'height':jQuery("#comment_hidden").height()},settings.animationSpeed,function(){
 					settings.alreadyAnimated = false;
 				});
 			}else if(!settings.animate && !settings.alreadyAnimated){
-				$(which).height($("#comment_hidden").height());
+				jQuery(which).height(jQuery("#comment_hidden").height());
 			};
 		};
 		
 		var shrink = function(which){
 			if(settings.animate && !settings.alreadyAnimated){
 				settings.alreadyAnimated = true;
-				$(which).animate({'height':$("#comment_hidden").height()},settings.animationSpeed,function(){
+				jQuery(which).animate({'height':jQuery("#comment_hidden").height()},settings.animationSpeed,function(){
 					settings.alreadyAnimated = false;
 				});
 			}else{
-				$(which).height($("#comment_hidden").height());
+				jQuery(which).height(jQuery("#comment_hidden").height());
 			};
 		};
 		
-		$(this).each(function(){
-			$(this).css({
+		jQuery(this).each(function(){
+			jQuery(this).css({
 				'overflow':'hidden'
 			})
 			.bind('keyup',function(){
-				copyContent($(this));
+				copyContent(jQuery(this));
 			});
 			
 			// Make sure all the content in the textarea is visible
 			setCSS(this);
-			copyContent($(this));
+			copyContent(jQuery(this));
 			
-			if($("#comment_hidden").height() > settings.maxHeight){
-				$(this).css({
+			if(jQuery("#comment_hidden").height() > settings.maxHeight){
+				jQuery(this).css({
 					'overflow-y':'scroll',
 					'height':settings.maxHeight
 				});
 			}else{
-				$(this).height($("#comment_hidden").height());
+				jQuery(this).height(jQuery("#comment_hidden").height());
 			};
 			
 			settings.init = false;
