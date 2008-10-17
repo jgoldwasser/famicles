@@ -93,6 +93,7 @@ describe Profile do
     it 'should remove college attendance when profile is deleted' do
       adding_college(@profile, "Cal Poly").call
       adding_college(@profile, "Grossmont").call
+      CollegeAttendance.count.should eql(2)
       lambda {@profile.destroy}.should change(CollegeAttendance, :count).by(-2)
       College.count.should eql(2)
     end
@@ -138,15 +139,13 @@ describe Profile do
   private
   def adding_college(profile, college_name)
     lambda do
-      school = College.create!(:name => college_name)
-      CollegeAttendance.create!(:profile => profile, :college => school)
+      profile.college_attendances.create!(:college_name => college_name)
     end
   end
 
   def adding_high_school(profile, school_name)
     lambda do
-      school = HighSchool.create!(:name => school_name)
-      HighSchoolAttendance.create!(:profile => profile, :high_school => school)
+      profile.high_school_attendances.create!(:high_school_name => school_name)
     end
   end
 

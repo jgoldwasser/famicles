@@ -14,13 +14,16 @@ module FamicleTestHelper
   end
 
   def create_profile_for_user(user, options = {})
-    Profile.create!({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :gender_public => true})
+    Profile.new({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :gender_public => true})
   end
 
   def setup_user_with_profile
     @user = create_user
     @user.activate!
     @profile = create_profile_for_user(@user)
+    @profile.contact_info = ContactInfo.new({:profile => @profile})
+    @profile.contact_info.email_addresses.build(:contact_info => @profile.contact_info, :email => @user.email, :validated => true, :default => true)
+    @profile.save
     @user.profile = @profile
   end
 end

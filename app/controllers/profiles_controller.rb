@@ -44,10 +44,11 @@ class ProfilesController < ApplicationController
 
   def update
     params[:profile][:existing_high_school_attendance_attributes] ||= {}
+    params[:profile][:existing_college_attendance_attributes] ||= {}
 
     @profile = Profile.find(params[:id])
     if @profile.update_attributes(params[:profile])
-      flash[:notice] = "Successfully updated profile and high schools"
+      flash[:notice] = "Successfully updated profile"
       redirect_to profile_path(@profile)
     else
       render :action => :edit

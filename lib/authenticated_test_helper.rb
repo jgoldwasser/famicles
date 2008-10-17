@@ -31,5 +31,11 @@ module AuthenticatedTestHelper
       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
       :errors => [])
     user
-  end  
+  end
+
+  def mock_contact_info
+    contact_info = ContactInfo.new
+    contact_info.stubs(:id).returns(1)
+    contact_info
+  end
 end

@@ -26,7 +26,7 @@ class Profile < ActiveRecord::Base
   has_many :employers, :through => :employments, :source => :employer
 
 
-  after_update :save_attendances
+  after_update :save_high_schools, :save_colleges
 
   MALE = 0
   FEMALE = 1
@@ -41,31 +41,40 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  def new_high_school_attendance_attributes=(hs_attributes)
-    hs_attributes.each do |attributes|
-      high_school_attendances.build(attributes.merge({:profile => self}))
+  def existing_high_school_attendance_attributes=(attributes) set_existing_model_attributes(:high_school_attendances, "high_school", HighSchool, attributes); end
+  def new_high_school_attendance_attributes=(attributes) set_new_model_attributes(:high_school_attendances, attributes); end
+
+  def existing_college_attendance_attributes=(attributes) set_existing_model_attributes(:college_attendances, "college", College, attributes); end
+  def new_college_attendance_attributes=(attributes) set_new_model_attributes(:college_attendances, attributes); end
+
+private
+  def set_new_model_attributes(name, model_attributes)
+    model_attributes.each do |attributes|
+      send(name).build(attributes.merge({:profile => self}))
     end
   end
 
-  def existing_high_school_attendance_attributes=(hs_attributes)
-    high_school_attendances.reject(&:new_record?).each do |attendance|
-      attributes = hs_attributes[attendance.id.to_s]
+  def set_existing_model_attributes(name, sub_model, sub_model_class, model_attributes)
+    send(name).reject(&:new_record?).each do |model|
+      attributes = model_attributes[model.id.to_s]
       if attributes
-        attendance.attributes = attributes
-        attendance.high_school = HighSchool.find_or_initialize_by_name(attributes[:hs_name])
+        model.attributes = attributes
+        model.write_attribute(sub_model, sub_model_class.find_or_initialize_by_name(attributes["#{sub_model}_name".to_sym]))
       else
-        high_school_attendances.delete(attendance)
+        send(name).delete(model)
       end
     end
   end
 
-  private
+  def save_high_schools() save_models(:high_school_attendances); end
+  def save_colleges() save_models(:college_attendances); end
 
-  def save_attendances
-    high_school_attendances.each do |attendance|
-      attendance.save(false)
+  def save_models(name)
+    send(name).each do |m|
+        m.save(false)
     end
   end
+
 end
 # == Schema Info
 # Schema version: 20081011041853

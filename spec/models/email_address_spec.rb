@@ -1,9 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+include FamicleTestHelper
+
 describe EmailAddress do
   before(:each) do
     @valid_attributes = {
-      :contact_info_id => "1",
+      :contact_info => mock_contact_info,
       :email => "value for email",
       :validated => false,
       :default => false
@@ -15,7 +17,7 @@ describe EmailAddress do
   end
 
   it "should not create an instance without valid attributes" do
-    EmailAddress.create(@valid_attributes.except(:contact_info_id)).save.should eql(false)
+    EmailAddress.create(@valid_attributes.except(:contact_info)).save.should eql(false)
     EmailAddress.create(@valid_attributes.except(:email)).save.should eql(false)
   end
 

@@ -5,8 +5,9 @@ include FamicleTestHelper
 
 describe ContactInfo do
   before(:each) do
+    setup_user_with_profile
     @valid_attributes = {
-      :profile_id => "1",
+      :profile => @user.profile,
       :address => "value for address",
       :city => "value for city",
       :state => "value for state",
@@ -22,7 +23,7 @@ describe ContactInfo do
   end
 
   it "should not create an instance without a profile" do
-    ContactInfo.create(@valid_attributes.except(:profile_id)).save.should eql(false)
+    ContactInfo.create(@valid_attributes.except(:profile)).save.should eql(false)
   end
 
   it "should create an instance without non-required attributes" do

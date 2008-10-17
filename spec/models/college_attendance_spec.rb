@@ -1,10 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+include AuthenticatedTestHelper
+include FamicleTestHelper
+
 describe CollegeAttendance do
   before(:each) do
+    setup_user_with_profile
     @valid_attributes = {
-      :profile_id => "1",
-      :college_id => "1",
+      :profile => @user.profile,
+      :college => College.create!(:name => "Cal Poly"),
       :class_year => "1",
       :major => "value for major"
     }
@@ -15,8 +19,8 @@ describe CollegeAttendance do
   end
 
   it "should not create a new instance without a required attributes" do
-    CollegeAttendance.create(@valid_attributes.except(:profile_id)).save.should eql(false)
-    CollegeAttendance.create(@valid_attributes.except(:college_id)).save.should eql(false)
+    CollegeAttendance.create(@valid_attributes.except(:profile)).save.should eql(false)
+    CollegeAttendance.create(@valid_attributes.except(:college)).save.should eql(false)
   end
 
   it "should allow a school attendance to be added without a year" do

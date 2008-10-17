@@ -1,11 +1,12 @@
-- new_or_existing = high_school_attendance.new_record? ? 'new' : 'existing'
-- prefix = "profile[#{new_or_existing}_high_school_attendance_attributes][]"
+%div.high_school
+  - new_or_existing = high_school_attendance.new_record? ? 'new' : 'existing'
+  - prefix = "profile[#{new_or_existing}_high_school_attendance_attributes][]"
 
-- fields_for prefix, high_school_attendance do |hsa_form|
-  %p
-    = label_tag 'High School:'
-    = hsa_form.text_field :high_school_name
-  %p
-    = label_tag 'Class Year:'
-    = hsa_form.text_field :class_year
-
+  - fields_for prefix, high_school_attendance do |hsa_form|
+    %p
+      = label_tag 'High School:'
+      = hsa_form.text_field :high_school_name
+    %p
+      = label_tag 'Class Year:'
+      = hsa_form.text_field :class_year
+    %p= link_to_function "remove", "$(this).up('.high_school').remove()"

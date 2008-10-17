@@ -7,8 +7,11 @@ describe ProfilesController, "creating a new profile" do
   integrate_views
 
   before(:each) do
+    @user = create_user
+    @user.activate!
     Profile.any_instance.stubs(:birthdate).returns(20.years.ago.to_date)
     ProfilesController.any_instance.stubs(:login_required).returns(true)
+    ProfilesController.any_instance.stubs(:current_user).returns(@user)
   end
 
   it "should redirect to index with a notice on successful save" do
@@ -29,10 +32,7 @@ describe ProfilesController, "creating a new profile" do
   end
 
   def create_profile(options = {})
-    @user = create_user
-
     post :create, :profile => { :user => @user,
-
         :timezone => "Pacific Time (US & Canada)",
         :gender => Profile::MALE,
         :full_name => "Tommy Bahama",

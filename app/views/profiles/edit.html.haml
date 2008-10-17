@@ -1,27 +1,3 @@
-%h1 My Famicle Member Profile
+%h1 Edit Your Profile
 
-= error_messages_for :profile
-
-
-- form_for @profile do |f|
-  #general_information
-    %h2 General Information
-    %fieldset
-      = render :partial => 'general_info', :locals => {:f => f}
-
-  #education_info
-    %h2 Education Information
-    %fieldset
-      = render :partial => 'high_school_attendance', :collection => @profile.high_school_attendances
-      
-  #personal_info
-    %h2 Personal Information
-    %fieldset
-      = render :partial => 'personal_info', :locals => {:f => f}
-      
-  #contact_info
-    %h2 Contact Information
-    %fieldset
-      = render :partial => 'contact_info', :object => @profile.contact_info
-
-  = submit_tag 'Save'
+= render :partial => "form"

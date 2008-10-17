@@ -1,0 +1,15 @@
+%div.college
+  - new_or_existing = college_attendance.new_record? ? 'new' : 'existing'
+  - prefix = "profile[#{new_or_existing}_college_attendance_attributes][]"
+
+  - fields_for prefix, college_attendance do |hsa_form|
+    %p
+      = label_tag 'College:'
+      = hsa_form.text_field :college_name
+    %p
+      = label_tag 'Class Year:'
+      = hsa_form.text_field :class_year
+    %p
+      = label_tag 'Major:'
+      = hsa_form.text_field :major  
+    %p= link_to_function "remove", "$(this).up('.college').remove()"

@@ -1,9 +1,19 @@
 class CollegeAttendance < ActiveRecord::Base
-  validates_presence_of :profile_id
-  validates_presence_of :college_id
+  validates_presence_of :profile
+  validates_presence_of :college
+  attr_accessor :college_name
+
 
   belongs_to :profile
   belongs_to :college
+
+  def college_name=(name)
+    self.college = College.find_or_initialize_by_name(name)
+  end
+
+  def college_name
+    self.college.nil? ? "" : self.college.name
+  end
 end
 # == Schema Info
 # Schema version: 20081011041853
