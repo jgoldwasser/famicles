@@ -25,20 +25,20 @@ describe ProfilesController, "creating a new profile" do
 
   it "should re-render new tempalte on failed save"  do
     Profile.any_instance.stubs(:save).returns(false)
-    post 'create'
+    create_profile
     assigns[:profile].should be_new_record
     flash[:notice].should be_nil
     response.should render_template("new")
   end
 
   def create_profile(options = {})
-    post :create, :profile => { :user => @user,
+    post :create, {:profile => { :user => @user,
         :timezone => "Pacific Time (US & Canada)",
         :gender => Profile::MALE,
         :full_name => "Tommy Bahama",
         :birthdate => 20.years.ago,
         :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL,
-        :gender_public => true }.merge(options)
+        :gender_public => true }.merge(options), :contact_info => {:land_phone => "222-222-2222"}}
   end
 
   #  user_id                  :integer(4)      not null

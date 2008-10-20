@@ -1,11 +1,20 @@
 = error_messages_for :profile
 
-
 - form_for @profile do |f|
   #general_information
     %h2 General Information
     %fieldset
       = render :partial => 'general_info', :locals => {:f => f}
+
+  #personal_info
+    %h2 Personal Information
+    %fieldset
+      = render :partial => 'personal_info', :locals => {:f => f}
+
+  #contact_info
+    %h2 Contact Information
+    %fieldset
+      = render :partial => 'contact_info', :object => @profile.contact_info
 
   #education_info
     %h2 Education Information
@@ -19,14 +28,11 @@
         = render :partial => 'college_attendance', :collection => @profile.college_attendances
       = add_college_link "Add a College"
 
-  #personal_info
-    %h2 Personal Information
+  #employment_info
+    %h2 Employment Information
     %fieldset
-      = render :partial => 'personal_info', :locals => {:f => f}
-
-  #contact_info
-    %h2 Contact Information
-    %fieldset
-      = render :partial => 'contact_info', :object => @profile.contact_info
+      #employments
+        = render :partial => 'employment', :collection => @profile.employments
+      = add_employer_link "Add an Employer"
 
   = submit_tag 'Save'

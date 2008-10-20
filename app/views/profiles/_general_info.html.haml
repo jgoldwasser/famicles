@@ -1,37 +1,37 @@
 = f.hidden_field :user_id
 %p
-  = label_tag 'full_name'
+  = label_tag 'profile_full_name', 'Your Full Name'
   %br
   = f.text_field :full_name
 %p
-  = label_tag 'birthdate'
+  = label_tag 'profile_birthdate', 'Birthdate'
   %br
   = f.text_field :birthdate
 %p
-  = label_tag 'gender'
+  = label_tag 'profile_gender', 'Gender'
   %br
-  = f.text_field :gender
+  = f.select :gender, gender_options, :include_blank => "Select Gender"
 %p
-  = label_tag 'timezone'
+  = label_tag 'profile_timezone', 'Your Timezone'
   %br
-  = f.text_field :timezone
+  = f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, :include_blank => "Choose your timezone"
 %p
-  = label_tag 'public_birthdate_display'
+  = label_tag 'profile_public_birthdate_display', 'Public Birthdate Display'
   %br
-  = f.text_field :public_birthdate_display
+  = f.select :public_birthdate_display, birthdate_display_options, :include_blank => "Choose public birthdate display"
 %p
-  = label_tag 'hometown'
+  = label_tag 'profile_hometown', 'Hometown'
   %br
   = f.text_field :hometown
 %p
-  = label_tag 'political_view'
+  = label_tag 'profile_political_view', 'Political View'
   %br
   = f.text_field :political_view
 %p
-  = label_tag 'religious_view'
+  = label_tag 'profile_religious_view', 'Religious View'
   %br
   = f.text_field :religious_view
 %p
-  = label_tag 'parenting_style'
+  = label_tag 'profile_parenting_style', 'Parenting Style'
   %br
   = f.text_field :parenting_style

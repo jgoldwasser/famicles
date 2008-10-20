@@ -1,7 +1,5 @@
 class HighSchool < ActiveRecord::Base
   validates_presence_of :name
-
-  
 end
 # == Schema Info
 # Schema version: 20081011041853

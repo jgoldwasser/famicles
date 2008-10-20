@@ -1,0 +1,9 @@
+%div.email_address
+  - new_or_existing = email_address.new_record? ? 'new' : 'existing'
+  - prefix = "contact_info[#{new_or_existing}_email_address_attributes][]"
+
+  - fields_for prefix, email_address do |email_form|
+    %p
+      = label_tag 'Email:'
+      = email_form.text_field :email
+    %p= link_to_function "remove", "$(this).up('.email_address').remove()"  

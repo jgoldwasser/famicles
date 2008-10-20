@@ -1,10 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+include AuthenticatedTestHelper
+include FamicleTestHelper
+
 describe Employment do
   before(:each) do
+    setup_user_with_profile
     @valid_attributes = {
-      :profile_id => "1",
-      :employer_id => "1",
+      :profile => @user.profile,
+      :employer => Employer.create!(:name => "Viant"),
       :position => "value for position",
       :location => "value for location",
       :start => "value for start",
@@ -18,8 +22,8 @@ describe Employment do
   end
 
   it "should not create a new instance without a required attributes" do
-    Employment.create(@valid_attributes.except(:profile_id)).save.should eql(false)
-    Employment.create(@valid_attributes.except(:employer_id)).save.should eql(false)
+    Employment.create(@valid_attributes.except(:profile)).save.should eql(false)
+    Employment.create(@valid_attributes.except(:employer)).save.should eql(false)
   end
 
   it "should allow a school attendance to be added without a year" do

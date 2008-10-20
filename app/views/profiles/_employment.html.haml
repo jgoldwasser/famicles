@@ -1,0 +1,25 @@
+%div.employment
+  - new_or_existing = employment.new_record? ? 'new' : 'existing'
+  - prefix = "profile[#{new_or_existing}_employment_attributes][]"
+
+  - fields_for prefix, employment do |emp_form|
+    %p
+      = label_tag 'Employer:'
+      = emp_form.text_field :employer_name
+    %p
+      = label_tag 'Position:'
+      = emp_form.text_field :position
+    %p
+      = label_tag 'Description:'
+      = emp_form.text_field :description
+    %p
+      = label_tag 'Location:'
+      = emp_form.text_field :location
+    %p
+      = label_tag 'Start:'
+      = emp_form.text_field :start
+    %p
+      = label_tag 'End:'
+      = emp_form.text_field :end
+
+    %p= link_to_function "remove", "$(this).up('.employment').remove()"

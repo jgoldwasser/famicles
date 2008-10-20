@@ -1,9 +1,18 @@
 class Employment < ActiveRecord::Base
-  validates_presence_of :profile_id
-  validates_presence_of :employer_id
+  validates_presence_of :profile
+  validates_presence_of :employer
+  attr_accessor :employer_name
 
   belongs_to :profile
   belongs_to :employer
+
+  def employer_name=(name)
+    self.employer = Employer.find_or_initialize_by_name(name)
+  end
+
+  def employer_name
+    self.employer.nil? ? "" : self.employer.name
+  end
 end
 # == Schema Info
 # Schema version: 20081011041853

@@ -26,26 +26,19 @@ class Profile < ActiveRecord::Base
   has_many :employers, :through => :employments, :source => :employer
 
 
-  after_update :save_high_schools, :save_colleges
+  after_update :save_high_schools, :save_colleges, :save_employers, :save_contact_info
 
   MALE = 0
   FEMALE = 1
-
-  # Virtual Attributes - these are used to save collections and models belonging to a profile
-  def contact_info_data=(attributes)
-    if contact_info.nil?
-      self.contact_info = ContactInfo.new(attributes.merge(:profile => self))
-      self.contact_info.email_addresses.build(:contact_info => self.contact_info, :email => self.user.email, :validated => true, :default => true)
-    else
-      self.contact_info.update_attributes(attributes)
-    end
-  end
 
   def existing_high_school_attendance_attributes=(attributes) set_existing_model_attributes(:high_school_attendances, "high_school", HighSchool, attributes); end
   def new_high_school_attendance_attributes=(attributes) set_new_model_attributes(:high_school_attendances, attributes); end
 
   def existing_college_attendance_attributes=(attributes) set_existing_model_attributes(:college_attendances, "college", College, attributes); end
   def new_college_attendance_attributes=(attributes) set_new_model_attributes(:college_attendances, attributes); end
+
+  def existing_employment_attributes=(attributes) set_existing_model_attributes(:employments, "employer", Employer, attributes); end
+  def new_employment_attributes=(attributes) set_new_model_attributes(:employments, attributes); end
 
 private
   def set_new_model_attributes(name, model_attributes)
@@ -68,11 +61,16 @@ private
 
   def save_high_schools() save_models(:high_school_attendances); end
   def save_colleges() save_models(:college_attendances); end
+  def save_employers() save_models(:employments); end
 
   def save_models(name)
     send(name).each do |m|
         m.save(false)
     end
+  end
+
+  def save_contact_info
+    contact_info.save(false) unless contact_info.nil?
   end
 
 end

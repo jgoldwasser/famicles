@@ -5,6 +5,30 @@ class ContactInfo < ActiveRecord::Base
   belongs_to :profile
   has_many :email_addresses, :dependent => :destroy
 
+  after_update :save_emails
+  
+  def existing_email_address_attributes=(email_attributes)
+    email_addresses.reject(&:new_record?).each do |email|
+      attributes = email_attributes[email.id.to_s]
+      if attributes
+        email.attributes = attributes
+      else
+        email_addresses.delete(email)
+      end
+    end
+  end
+
+  def new_email_address_attributes=(email_attributes)
+    email_attributes.each do |attributes|
+      email_addresses.build(attributes.merge({:default => false, :validated => false}))
+    end
+  end
+
+  def save_emails
+    email_addresses.each do |email|
+      email.save(false)
+    end
+  end
 end
 # == Schema Info
 # Schema version: 20081011041853

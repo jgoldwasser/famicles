@@ -19,7 +19,6 @@ describe Profile do
   end
 
   before(:each) do
-
     @valid_attributes = {
         :user_id => 1,
         :full_name => "Curt Zee",
@@ -151,8 +150,7 @@ describe Profile do
 
   def adding_employer(profile, employer_name)
     lambda do
-      employer = Employer.create!(:name => employer_name)
-      Employment.create!(:profile => profile, :employer => employer)
+      profile.employments.create!(:employer_name => employer_name)
     end
   end
 

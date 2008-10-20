@@ -1,7 +1,10 @@
-- fields_for 'profile[contact_info_data]', @profile.contact_info do |contact_form|
-  %p
-    = label_tag 'Email:'
-    = current_user.email
+- fields_for @profile.contact_info do |contact_form|
+  #email_addresses
+    %p
+      = label_tag 'Default Email:'
+      = current_user.email
+    = render :partial => 'email_address', :collection => @profile.contact_info.email_addresses unless @profile.contact_info.blank?
+  = add_email_link "Add an Email"
   %p
     Land Phone:
     = contact_form.text_field :land_phone 
