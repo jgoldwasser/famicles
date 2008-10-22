@@ -1,7 +1,7 @@
 class CreateProfilePhotos < ActiveRecord::Migration
   def self.up
     create_table :profile_photos do |t|
-      t.integer :profile_id, :null => false
+      t.integer :profile_id
       t.integer :parent_id
       t.string :content_type, :null => false
       t.string :filename, :null => false

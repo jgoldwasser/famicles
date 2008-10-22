@@ -7,3 +7,5 @@ log/*.log
 tmp/test_images/*
 coverage
 doc/spec*.*
+tmp/*
+public/images/profiles/*

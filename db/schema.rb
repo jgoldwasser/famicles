@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
   end
 
   create_table "profile_photos", :force => true do |t|
-    t.integer  "profile_id",                   :null => false
+    t.integer  "profile_id"
     t.integer  "parent_id"
     t.string   "content_type", :default => "", :null => false
     t.string   "filename",     :default => "", :null => false
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
     t.string   "favorite_music",           :limit => 2000
     t.string   "favorite_sites",           :limit => 2000
     t.string   "favorite_movies",          :limit => 2000
-    t.boolean  "public",                                   :default => true
+    t.integer  "public",                   :limit => 1,                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

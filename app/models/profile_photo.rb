@@ -1,6 +1,8 @@
 class ProfilePhoto < ActiveRecord::Base
-  has_attachment :content_type => :image, :storage => :file_system, :resize_to => '320x200>', :thumnails => {:thumb => '100x100>'}
+  has_attachment :max_size => 5.megabytes, :content_type => :image, :storage => :file_system, :resize_to => '320x200>', :thumbnails => {:thumb => '150x150>', :geometry => '250x250>'}, :path_prefix => "public/images/profiles"
   validates_as_attachment
+
+  belongs_to :profile
 end
 # == Schema Info
 # Schema version: 20081011041853

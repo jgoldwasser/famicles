@@ -10,7 +10,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :timezone, :null => false, :limit => 50
       t.string :hometown, :political_view, :religious_view, :parenting_style, :limit => 100
       t.string :about_me, :what_i_like, :what_i_do, :favorite_tv, :favorite_music, :favorite_sites, :favorite_movies, :limit => 2000                                                      
-      t.boolean :public, :default => true
+      t.integer :public, :null => false, :limit => 1
 
       t.timestamps
     end

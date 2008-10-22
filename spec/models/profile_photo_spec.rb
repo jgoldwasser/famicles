@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+TEST_DIR = "tmp/test_images"
+
 describe ProfilePhoto do
   before(:all) do
     ProfilePhoto.attachment_options[:path_prefix] =

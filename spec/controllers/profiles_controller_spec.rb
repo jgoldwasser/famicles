@@ -38,7 +38,9 @@ describe ProfilesController, "creating a new profile" do
         :full_name => "Tommy Bahama",
         :birthdate => 20.years.ago,
         :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL,
-        :gender_public => true }.merge(options), :contact_info => {:land_phone => "222-222-2222"}}
+        :gender_public => true,
+        :contact_info_data => {:land_phone => "222-222-2222"},
+        :public => Profile::PUBLIC }.merge(options), :profile_photo => {}}
   end
 
   #  user_id                  :integer(4)      not null

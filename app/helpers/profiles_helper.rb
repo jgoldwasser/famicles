@@ -35,4 +35,7 @@ module ProfilesHelper
     [["Male", 1], ["Female", 0]]
   end
 
+  def profile_options
+    [["Public", 1], ["Private", 2]]
+  end
 end

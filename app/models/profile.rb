@@ -13,6 +13,10 @@ class Profile < ActiveRecord::Base
   PUBLIC_BIRTHDATE_DISPLAY_NONE = 3
   validates_inclusion_of :public_birthdate_display, :in => [PUBLIC_BIRTHDATE_DISPLAY_FULL, PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR, PUBLIC_BIRTHDATE_DISPLAY_NONE]
 
+  PUBLIC = 1
+  PRIVATE = 2
+  validates_inclusion_of :public, :in => [PUBLIC, PRIVATE]
+
   belongs_to :user
   has_one :contact_info, :dependent => :destroy
   has_one :profile_photo, :dependent => :destroy
@@ -40,7 +44,23 @@ class Profile < ActiveRecord::Base
   def existing_employment_attributes=(attributes) set_existing_model_attributes(:employments, "employer", Employer, attributes); end
   def new_employment_attributes=(attributes) set_new_model_attributes(:employments, attributes); end
 
-private
+  def contact_info_data=(data)
+    if self.contact_info.nil?
+      self.contact_info = ContactInfo.new(data.merge({:profile => self}))
+    else
+      self.contact_info.attributes = data
+    end
+  end
+
+  def profile_photo_data=(data)
+    if self.profile_photo.nil?
+      self.profile_photo = ProfilePhoto.new(data.merge({:profile => self}))
+    else
+      self.profile_photo.update_attributes(data)
+    end
+  end
+
+  private
   def set_new_model_attributes(name, model_attributes)
     model_attributes.each do |attributes|
       send(name).build(attributes.merge({:profile => self}))

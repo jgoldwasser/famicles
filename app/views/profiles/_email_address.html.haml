@@ -1,6 +1,6 @@
 %div.email_address
   - new_or_existing = email_address.new_record? ? 'new' : 'existing'
-  - prefix = "contact_info[#{new_or_existing}_email_address_attributes][]"
+  - prefix = "profile[contact_info_data][#{new_or_existing}_email_address_attributes][]"
 
   - fields_for prefix, email_address do |email_form|
     %p

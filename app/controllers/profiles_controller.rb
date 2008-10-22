@@ -25,7 +25,6 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(params[:profile])
-    @profile.contact_info = ContactInfo.new(params[:contact_info].merge(:profile => @profile))
     if @profile.save
       flash[:notice] = "Profile was successfully crreated."
       redirect_to profiles_url
@@ -35,8 +34,7 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = Profile.new(:user_id => current_user.id)
-    @profile.contact_info = ContactInfo.new(:profile => @profile)
+    @profile = Profile.new(:user_id => current_user.id, :public => Profile::PUBLIC)
   end
 
   def edit
@@ -47,10 +45,10 @@ class ProfilesController < ApplicationController
     params[:profile][:existing_high_school_attendance_attributes] ||= {}
     params[:profile][:existing_college_attendance_attributes] ||= {}
     params[:profile][:existing_employment_attributes] ||= {}
-    params[:contact_info][:existing_email_address_attributes] ||= {}
+    params[:profile][:contact_info_data][:existing_email_address_attributes] ||= {}
 
     @profile = Profile.find(params[:id])
-    if @profile.update_attributes(params[:profile]) && @profile.contact_info.update_attributes(params[:contact_info])
+    if @profile.update_attributes(params[:profile])
       flash[:notice] = "Successfully updated profile"
       redirect_to profile_path(@profile)
     else

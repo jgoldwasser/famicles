@@ -29,7 +29,8 @@ describe Profile do
         :public_birthdate_display => 1,
         :about_me => "value for about_me",
         :timezone => "Pacific Time (US & Canada)",
-        :profile_photo => @image
+        :profile_photo => @image,
+        :public => Profile::PUBLIC
     }
   end
 
