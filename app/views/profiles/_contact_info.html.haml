@@ -6,5 +6,23 @@
     = render :partial => 'email_address', :collection => @profile.contact_info.email_addresses unless @profile.contact_info.blank?
   = add_email_link "Add an Email"
   %p
-    Land Phone:
-    = contact_form.text_field :land_phone 
+    = label_tag 'profile_contact_info_data_address', 'Address:'
+    = contact_form.text_field :address
+  %p
+    = label_tag 'profile_contact_info_data_city', 'City:'
+    = contact_form.text_field :city
+  %p
+    = label_tag 'profile_contact_info_data_state', 'State:'
+    = contact_form.text_field :state
+  %p
+    = label_tag 'profile_contact_info_data_postal_code', 'Zip:'
+    = contact_form.text_field :postal_code
+  %p
+    = label_tag 'profile_contact_info_data_land_phone', 'Land Phone:'
+    = contact_form.text_field :land_phone
+  %p
+    = label_tag 'profile_contact_info_data_mobile_phone', 'Mobile Phone:'
+    = contact_form.text_field :mobile_phone
+  %p
+    = label_tag 'profile_contact_info_data_websites', 'My Websites:'
+    = contact_form.text_field :websites
