@@ -8,9 +8,20 @@
         = label_tag 'famicle_name', 'Famicle Name'
         %br
         = f.text_field :name
-
+      %p
+        = label_tag 'famicle_description', 'Description:'
+        %br
+        = f.text_area :description
       %p
         = label_tag 'famicle_public', 'My Famicle is:'
         %br
         = f.select :public, public_private_options
+      %p
+        = label_tag 'famicle_hometown', 'Famicle Howntown:'
+        %br
+        = f.text_field :hometown
+      %p
+        = label_tag 'famicle_most_resemble', 'We most resemble:'
+        %br
+        = f.select :most_resemble, most_resemble_options, :include_blank => "Select TV/Movie Family"  
   = submit_tag 'Save'

@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
     t.string   "name",                       :default => "", :null => false
     t.text     "description"
     t.integer  "public",        :limit => 1,                 :null => false
-    t.text     "hometown"
-    t.text     "most_resemble"
+    t.string   "hometown"
+    t.string   "most_resemble"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -12,8 +12,23 @@ class FamiclesController < ApplicationController
     end
   end
 
+  # GET /famicles/1
+  # GET /famicles/1.xml
+  def show
+    @famicle = Famicle.find(params[:id])
+
+    respond_to do |wants|
+      wants.html # show.html.erb
+      wants.xml  { render :xml => @profile }
+    end
+  end
+
   def new
     @famicle = Famicle.new
+  end
+
+  def edit
+    @famicle = Famicle.find(params[:id])
   end
 
   def create
@@ -24,6 +39,16 @@ class FamiclesController < ApplicationController
       redirect_to famicles_url
     else
       render :action => :new
+    end
+  end
+
+  def update
+    @famicle = Famicle.find(params[:id])
+    if @famicle.update_attributes(params[:famicle])
+      flash[:notice] = "Successfully updated famicle"
+      redirect_to famicle_path(@famicle)
+    else
+      render :action => :edit
     end
   end
 end

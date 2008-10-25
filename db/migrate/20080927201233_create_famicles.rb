@@ -4,8 +4,8 @@ class CreateFamicles < ActiveRecord::Migration
       t.string :name, :null => false
       t.text :description
       t.integer :public, :null => false, :limit => 1
-      t.text :hometown
-      t.text :most_resemble
+      t.string :hometown
+      t.string :most_resemble
 
       t.timestamps
     end

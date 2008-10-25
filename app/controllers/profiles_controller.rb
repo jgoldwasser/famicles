@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
   end
 
   def new
-    @profile = Profile.new(:user_id => current_user.id, :public => Profile::PUBLIC)
+    @profile = Profile.new(:user_id => current_user.id, :public => ApplicationController::PUBLIC)
   end
 
   def edit
