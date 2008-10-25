@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  birthdate: 2008-10-25
+  born: false
+  public: 1
+  tracked: false
+
+two:
+  name: MyString
+  birthdate: 2008-10-25
+  born: false
+  public: 1
+  tracked: false

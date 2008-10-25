@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081025202438) do
+ActiveRecord::Schema.define(:version => 20081025204332) do
+
+  create_table "children", :force => true do |t|
+    t.integer  "famicle_id"
+    t.string   "name"
+    t.date     "birthdate"
+    t.boolean  "born"
+    t.integer  "public",     :limit => 1, :null => false
+    t.boolean  "tracked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "college_attendances", :force => true do |t|
     t.integer  "profile_id", :null => false
