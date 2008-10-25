@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081011041853) do
+ActiveRecord::Schema.define(:version => 20081025202438) do
 
   create_table "college_attendances", :force => true do |t|
     t.integer  "profile_id", :null => false
@@ -91,6 +91,19 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
 
   add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
   add_index "famicle_memberships", ["famicle_id"], :name => "index_famicle_memberships_on_famicle_id"
+
+  create_table "famicle_photos", :force => true do |t|
+    t.integer  "famicle_id"
+    t.integer  "parent_id"
+    t.string   "content_type", :default => "", :null => false
+    t.string   "filename",     :default => "", :null => false
+    t.string   "thumbnail"
+    t.integer  "size",                         :null => false
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "famicles", :force => true do |t|
     t.string   "name",                       :default => "", :null => false

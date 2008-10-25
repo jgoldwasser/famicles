@@ -1,4 +1,6 @@
 module FamicleTestHelper
+  TEST_DIR = "tmp/test_images"
+  
   def create_famicle(creator, name=creator.name + "'s Famcile")
     famicle = Famicle.create!(:name => name, :public => ApplicationController::PUBLIC)
     creator.famicle_memberships.create!(:famicle_id => famicle.id, :role => "creator", :default => true)

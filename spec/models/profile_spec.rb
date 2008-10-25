@@ -3,8 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include AuthenticatedTestHelper
 include FamicleTestHelper
 
-TEST_DIR = "tmp/test_images"
-
 describe Profile do
   before(:all) do
     ProfilePhoto.attachment_options[:path_prefix] =

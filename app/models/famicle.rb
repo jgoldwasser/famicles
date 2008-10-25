@@ -10,10 +10,20 @@ class Famicle < ActiveRecord::Base
   # Invitations 
   has_many :famicle_invitations
 
+  has_one :famicle_photo, :dependent => :destroy
+
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}
 
   validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
+
+  def famicle_photo_data=(data)
+    if self.famicle_photo.nil?
+      self.famicle_photo = FamiclePhoto.new(data.merge({:famicle => self}))
+    else
+      self.famicle_photo.update_attributes(data)
+    end
+  end
 
   def invite_member_by_email(sender, receiver_email)
     raise Exception.new("Only Owners can invite members") unless invitation_allowed?(sender)

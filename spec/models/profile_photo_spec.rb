@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-TEST_DIR = "tmp/test_images"
+include FamicleTestHelper
 
 describe ProfilePhoto do
   before(:all) do
@@ -17,8 +17,6 @@ describe ProfilePhoto do
     @image.profile_id = 1
     @image.uploaded_data = fixture_file_upload("images/profile.jpg", "image/jpg")
     @image.save
-
-    #@image = ProfilePhoto.create(:profile_id => 1, :uploaded_data => fixture_file_upload("images/profile.jpg", "image/jpg"))
   end
 end
 # == Schema Info
