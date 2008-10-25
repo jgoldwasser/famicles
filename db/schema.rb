@@ -103,19 +103,6 @@ ActiveRecord::Schema.define(:version => 20081025204332) do
   add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
   add_index "famicle_memberships", ["famicle_id"], :name => "index_famicle_memberships_on_famicle_id"
 
-  create_table "famicle_photos", :force => true do |t|
-    t.integer  "famicle_id"
-    t.integer  "parent_id"
-    t.string   "content_type", :default => "", :null => false
-    t.string   "filename",     :default => "", :null => false
-    t.string   "thumbnail"
-    t.integer  "size",                         :null => false
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "famicles", :force => true do |t|
     t.string   "name",                       :default => "", :null => false
     t.text     "description"
@@ -159,15 +146,20 @@ ActiveRecord::Schema.define(:version => 20081025204332) do
   create_table "profile_photos", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "parent_id"
-    t.string   "content_type", :default => "", :null => false
-    t.string   "filename",     :default => "", :null => false
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "content_type",    :default => "", :null => false
+    t.string   "filename",        :default => "", :null => false
     t.string   "thumbnail"
-    t.integer  "size",                         :null => false
+    t.integer  "size",                            :null => false
     t.integer  "width"
     t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "profile_photos", ["parent_id"], :name => "index_profile_photos_on_parent_id"
+  add_index "profile_photos", ["attachable_id", "attachable_type"], :name => "index_profile_photos_on_attachable_id_and_attachable_type"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id",                                                  :null => false

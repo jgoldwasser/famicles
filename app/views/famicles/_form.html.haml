@@ -24,8 +24,8 @@
         = label_tag 'famicle_most_resemble', 'We most resemble:'
         %br
         = f.select :most_resemble, most_resemble_options, :include_blank => "Select TV/Movie Family"
-      - fields_for 'famicle[famicle_photo_data]', @famicle.famicle_photo do |photo_form|
+      - fields_for 'famicle[profile_photo_data]', @famicle.profile_photo do |photo_form|
         %p Photo:
-        = image_tag(@famicle.famicle_photo.public_filename(:thumb)) unless @famicle.famicle_photo.nil?
+        = image_tag(@famicle.profile_photo.public_filename(:thumb)) unless @famicle.profile_photo.nil?
         = photo_form.file_field :uploaded_data
   = submit_tag 'Save'

@@ -10,18 +10,18 @@ class Famicle < ActiveRecord::Base
   # Invitations 
   has_many :famicle_invitations
 
-  has_one :famicle_photo, :dependent => :destroy
+  has_one :profile_photo, :as => :attachable, :dependent => :destroy
 
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}
 
   validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
 
-  def famicle_photo_data=(data)
-    if self.famicle_photo.nil?
-      self.famicle_photo = FamiclePhoto.new(data.merge({:famicle => self}))
+  def profile_photo_data=(data)
+    if self.profile_photo.nil?
+      self.profile_photo = ProfilePhoto.new(data.merge({:famicle => self}))
     else
-      self.famicle_photo.update_attributes(data)
+      self.profile_photo.update_attributes(data)
     end
   end
 
