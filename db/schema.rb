@@ -93,9 +93,11 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
   add_index "famicle_memberships", ["famicle_id"], :name => "index_famicle_memberships_on_famicle_id"
 
   create_table "famicles", :force => true do |t|
-    t.string   "name",        :default => "",   :null => false
+    t.string   "name",                       :default => "", :null => false
     t.text     "description"
-    t.boolean  "public",      :default => true, :null => false
+    t.integer  "public",        :limit => 1,                 :null => false
+    t.text     "hometown"
+    t.text     "most_resemble"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,13 +146,12 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.integer  "user_id",                                                    :null => false
-    t.string   "full_name",                :limit => 50,   :default => "",   :null => false
-    t.integer  "gender",                   :limit => 1,                      :null => false
-    t.boolean  "gender_public",                            :default => true
-    t.date     "birthdate",                                                  :null => false
-    t.integer  "public_birthdate_display", :limit => 1,                      :null => false
-    t.string   "timezone",                 :limit => 50,   :default => "",   :null => false
+    t.integer  "user_id",                                                  :null => false
+    t.string   "full_name",                :limit => 50,   :default => "", :null => false
+    t.integer  "gender",                   :limit => 1,                    :null => false
+    t.date     "birthdate",                                                :null => false
+    t.integer  "public_birthdate_display", :limit => 1,                    :null => false
+    t.string   "timezone",                 :limit => 50,   :default => "", :null => false
     t.string   "hometown",                 :limit => 100
     t.string   "political_view",           :limit => 100
     t.string   "religious_view",           :limit => 100
@@ -162,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20081011041853) do
     t.string   "favorite_music",           :limit => 2000
     t.string   "favorite_sites",           :limit => 2000
     t.string   "favorite_movies",          :limit => 2000
-    t.integer  "public",                   :limit => 1,                      :null => false
+    t.integer  "public",                   :limit => 1,                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

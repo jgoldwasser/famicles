@@ -13,9 +13,7 @@ class Profile < ActiveRecord::Base
   PUBLIC_BIRTHDATE_DISPLAY_NONE = 3
   validates_inclusion_of :public_birthdate_display, :in => [PUBLIC_BIRTHDATE_DISPLAY_FULL, PUBLIC_BIRTHDATE_DISPLAY_MONTH_YEAR, PUBLIC_BIRTHDATE_DISPLAY_NONE]
 
-  PUBLIC = 1
-  PRIVATE = 2
-  validates_inclusion_of :public, :in => [PUBLIC, PRIVATE]
+  validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
 
   belongs_to :user
   has_one :contact_info, :dependent => :destroy

@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |wants|
       wants.html # index.html.erb
-      wants.xml  { render :xml => @childrens }
+      wants.xml  { render :xml => @famicles }
     end
   end
 
@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
     if @profile.save
       flash[:notice] = "Profile was successfully crreated."
-      redirect_to profiles_url
+      redirect_to create_famicle_url
     else
       render :action => :new
     end

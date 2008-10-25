@@ -19,7 +19,7 @@ describe ProfilesController, "creating a new profile" do
       create_profile
       assigns[:profile].should_not be_new_record
       flash[:notice].should_not be_nil
-      response.should redirect_to(profiles_path)
+      response.should redirect_to(create_famicle_url)
     end.should change(Profile, :count).by(1)
   end
 
@@ -38,9 +38,8 @@ describe ProfilesController, "creating a new profile" do
         :full_name => "Tommy Bahama",
         :birthdate => 20.years.ago,
         :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL,
-        :gender_public => true,
         :contact_info_data => {:land_phone => "222-222-2222"},
-        :public => Profile::PUBLIC }.merge(options), :profile_photo => {}}
+        :public => ApplicationController::PUBLIC }.merge(options), :profile_photo => {}}
   end
 
   #  user_id                  :integer(4)      not null

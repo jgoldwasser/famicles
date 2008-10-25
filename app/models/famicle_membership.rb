@@ -1,6 +1,6 @@
 class FamicleMembership < ActiveRecord::Base
   validates_presence_of :user_id
-  validates_presence_of :famicle_id
+  validates_presence_of :famicle
   validates_presence_of :role
 
   belongs_to :famicle

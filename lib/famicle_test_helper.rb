@@ -1,6 +1,6 @@
 module FamicleTestHelper
   def create_famicle(creator, name=creator.name + "'s Famcile")
-    famicle = Famicle.create!(:name => name)
+    famicle = Famicle.create!(:name => name, :public => ApplicationController::PUBLIC)
     creator.famicle_memberships.create!(:famicle_id => famicle.id, :role => "creator", :default => true)
     famicle
   end
@@ -14,7 +14,7 @@ module FamicleTestHelper
   end
 
   def create_profile_for_user(user, options = {})
-    Profile.new({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :gender_public => true, :public => Profile::PUBLIC})
+    Profile.new({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :public => ApplicationController::PUBLIC})
   end
 
   def setup_user_with_profile

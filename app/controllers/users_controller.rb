@@ -33,7 +33,8 @@ class UsersController < ApplicationController
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to '/login'
+      self.current_user = user
+      redirect_to create_profile_url
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_to login_url

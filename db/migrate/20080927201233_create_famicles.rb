@@ -3,7 +3,9 @@ class CreateFamicles < ActiveRecord::Migration
     create_table :famicles do |t|
       t.string :name, :null => false
       t.text :description
-      t.boolean :public, :null => false, :default => true
+      t.integer :public, :null => false, :limit => 1
+      t.text :hometown
+      t.text :most_resemble
 
       t.timestamps
     end

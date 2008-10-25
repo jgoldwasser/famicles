@@ -1,0 +1,16 @@
+= error_messages_for :famicle
+
+- form_for @famicle, :html => { :multipart => true }  do |f|
+  #general_information
+    %h2 About My Famicle
+    %fieldset
+      %p
+        = label_tag 'famicle_name', 'Famicle Name'
+        %br
+        = f.text_field :name
+
+      %p
+        = label_tag 'famicle_public', 'My Famicle is:'
+        %br
+        = f.select :public, public_private_options
+  = submit_tag 'Save'

@@ -4,7 +4,6 @@ class CreateProfiles < ActiveRecord::Migration
       t.integer :user_id, :null => false
       t.string :full_name, :null => false, :limit => 50
       t.integer :gender, :null => false, :limit => 1
-      t.boolean :gender_public, :default => true
       t.date :birthdate, :null => false
       t.integer :public_birthdate_display, :null => false, :limit => 1
       t.string :timezone, :null => false, :limit => 50

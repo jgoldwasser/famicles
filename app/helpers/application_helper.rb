@@ -16,4 +16,9 @@ module ApplicationHelper
     end
     messages
   end
+
+  # General Options for Public Private selects
+  def public_private_options
+    [["Public", ApplicationController::PUBLIC], ["Private", ApplicationController::PRIVATE]]
+  end
 end

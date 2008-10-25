@@ -24,13 +24,12 @@ describe Profile do
         :full_name => "Curt Zee",
         :hometown => "Las Vegas",
         :gender => Profile::MALE,
-        :gender_public => true,
         :birthdate => 23.years.ago,
         :public_birthdate_display => 1,
         :about_me => "value for about_me",
         :timezone => "Pacific Time (US & Canada)",
         :profile_photo => @image,
-        :public => Profile::PUBLIC
+        :public => ApplicationController::PUBLIC
     }
   end
 

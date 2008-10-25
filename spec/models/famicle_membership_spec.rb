@@ -4,7 +4,7 @@ describe FamicleMembership do
   before(:each) do
     @valid_attributes = {
       :user_id => "1",
-      :famicle_id => "1",
+      :famicle => Famicle.new(:name => "Fam Name", :public => ApplicationController::PUBLIC),
       :role => "creator",
       :default => false
     }
@@ -16,7 +16,7 @@ describe FamicleMembership do
 
   it "should not create a new instance without a required attributes" do
     FamicleMembership.create(@valid_attributes.except(:user_id)).save.should eql(false)
-    FamicleMembership.create(@valid_attributes.except(:famicle_id)).save.should eql(false)
+    FamicleMembership.create(@valid_attributes.except(:famicle)).save.should eql(false)
     FamicleMembership.create(@valid_attributes.except(:role)).save.should eql(false)
   end
 

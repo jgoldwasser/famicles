@@ -7,7 +7,8 @@ describe Famicle do
   before(:each) do
     @valid_attributes = {
       :name => "value for name",
-      :description => "value for description"
+      :description => "value for description",
+      :public => ApplicationController::PUBLIC
     }
   end
 
@@ -44,7 +45,7 @@ describe Famicle do
 
     it "should default to public" do
       @creating_famicle.call
-      @famicle.public.should eql(true)
+      @famicle.public.should eql(ApplicationController::PUBLIC)
     end
 
     it "should have one owner" do

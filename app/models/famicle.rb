@@ -12,7 +12,9 @@ class Famicle < ActiveRecord::Base
 
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}
-  
+
+  validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
+
   def invite_member_by_email(sender, receiver_email)
     raise Exception.new("Only Owners can invite members") unless invitation_allowed?(sender)
     receiver = User.find_by_email(receiver_email)

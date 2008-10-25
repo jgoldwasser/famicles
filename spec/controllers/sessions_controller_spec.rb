@@ -48,7 +48,7 @@ describe SessionsController do
             it "greets me nicely"            do do_create; response.flash[:notice].should =~ /success/i   end
             it "sets/resets/expires cookie"  do controller.expects(:handle_remember_cookie!).with(want_remember_me); do_create end
             it "sends a cookie"              do controller.expects(:send_remember_cookie!);  do_create end
-            it 'redirects to the home page'  do do_create; response.should redirect_to('/profiles/new')   end
+            it 'redirects to the home page'  do do_create; response.should redirect_to('/create_profile')   end
             it "does not reset my session"   do controller.expects(:reset_session).never; do_create end # change if you uncomment the reset_session path
             if (has_request_token == :valid)
               it 'does not make new token'   do @user.expects(:remember_me).never;   do_create end

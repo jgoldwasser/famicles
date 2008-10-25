@@ -1,0 +1,11 @@
+%h1 Listing Famicles
+
+%table
+  - for famicle in @famicles
+    %tr
+      %td= link_to 'Show', famicle
+      %td= link_to 'Edit', edit_famicle_path(famicle)
+      %td= link_to 'Destroy', famicle, :confirm => 'Are you sure?', :method => :delete
+<br />
+
+= link_to 'New Famicle', new_famicle_path
