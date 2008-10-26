@@ -1,4 +1,6 @@
 class Profile < ActiveRecord::Base
+  include ProfilePhotoPersistence
+
   validates_presence_of :user_id
   validates_presence_of :full_name
   validates_presence_of :birthdate
@@ -47,14 +49,6 @@ class Profile < ActiveRecord::Base
       self.contact_info = ContactInfo.new(data.merge({:profile => self}))
     else
       self.contact_info.attributes = data
-    end
-  end
-
-  def profile_photo_data=(data)
-    if self.profile_photo.nil?
-      self.profile_photo = ProfilePhoto.new(data.merge({:profile => self}))
-    else
-      self.profile_photo.update_attributes(data)
     end
   end
 

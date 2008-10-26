@@ -19,7 +19,7 @@ class FamiclesController < ApplicationController
 
     respond_to do |wants|
       wants.html # show.html.erb
-      wants.xml  { render :xml => @profile }
+      wants.xml  { render :xml => @famicle }
     end
   end
 

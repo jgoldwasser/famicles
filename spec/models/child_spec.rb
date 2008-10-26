@@ -8,7 +8,7 @@ describe Child do
       :famicle_id => 1,
       :name => "value for name",
       :birthdate => Date.today,
-      :born => true,
+      :not_born => false,
       :public => ApplicationController::PUBLIC,
       :tracked => false
     }

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20081025204332) do
     t.integer  "famicle_id"
     t.string   "name"
     t.date     "birthdate"
-    t.boolean  "born"
+    t.boolean  "not_born"
     t.integer  "public",     :limit => 1, :null => false
     t.boolean  "tracked"
     t.datetime "created_at"

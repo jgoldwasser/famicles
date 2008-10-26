@@ -28,4 +28,4 @@
         %p Photo:
         = image_tag(@famicle.profile_photo.public_filename(:thumb)) unless @famicle.profile_photo.nil?
         = photo_form.file_field :uploaded_data
-  = submit_tag 'Save'
+  = submit_tag 'Save', :disable_with => 'Saving...'

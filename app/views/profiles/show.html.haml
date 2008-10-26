@@ -2,7 +2,12 @@
 
 %h2= "#{@profile.full_name} ID: #{@profile.id}"
 
+%h3 Famicles
+- current_user.famicle_memberships.each do |fm|
+  = link_to fm.famicle.name, famicle_path
 
+%br
+%br
 = link_to 'Edit', edit_profile_path(@profile)
 |
 = link_to 'Back', profiles_path

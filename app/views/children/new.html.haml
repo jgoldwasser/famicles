@@ -1,0 +1,36 @@
+%h1 Create Child Profile
+
+= error_messages_for :child
+
+- form_for [:famicle, @child], :html => {:multipart => true} do |f|
+  = f.hidden_field :famicle_id
+  %p
+    = f.label :name, "Child's Name:"
+    %br
+    = f.text_field :name
+  %p
+    = f.label :birthdate, "Birthdate:"
+    %br
+    = f.text_field :birthdate
+  %p
+    = f.label :not_born, 'Child is not born yet'
+    = f.check_box :not_born
+  %p
+    = f.label :public, "My Child's Profile is:"
+    %br
+    = f.select :public, public_private_options  
+  %p
+    Track Child's Development:
+    %br
+    Yes
+    = f.radio_button :tracked, "true"
+    No
+    = f.radio_button :tracked, "false"
+  %p
+    - fields_for 'child[profile_photo_data]', @child.profile_photo do |photo_form|
+      %p Photo:
+      = image_tag(@child.profile_photo.public_filename(:thumb)) unless @child.profile_photo.nil?
+      = photo_form.file_field :uploaded_data
+  %br
+  %br
+  = submit_tag 'Save', :disable_with => 'Saving...'

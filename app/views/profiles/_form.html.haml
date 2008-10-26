@@ -35,4 +35,4 @@
         = render :partial => 'employment', :collection => @profile.employments
       = add_employer_link "Add an Employer"
 
-  = submit_tag 'Save'
+  = submit_tag 'Save', :disable_with => 'Saving...'

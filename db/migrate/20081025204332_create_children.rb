@@ -4,7 +4,7 @@ class CreateChildren < ActiveRecord::Migration
       t.integer :famicle_id
       t.string :name
       t.date :birthdate
-      t.boolean :born
+      t.boolean :not_born
       t.integer :public, :null => false, :limit => 1
       t.boolean :tracked
 
