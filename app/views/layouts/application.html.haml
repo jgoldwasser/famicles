@@ -1,0 +1,36 @@
+!!! Strict
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title
+      = @page_title || APP_CONFIG[:site_name]
+    %meta{ :content => "text/xhtml; charset=utf-8", "http-equiv" => "content-type" }/
+    %meta{ :content => "no", "http-equiv" => "imagetoolbar" }/
+    %meta{ :name => "distribution", :content => "all" }/
+    %meta{ :name => "robots", :content => "all" }/
+    %meta{ :name => "resource-type", :content => "document" }/
+    %meta{ :name => "MSSmartTagsPreventParsing", :content => "true" }/
+    = stylesheet_link_tag 'base'
+    = javascript_include_tag :defaults
+    = javascript_include_tag 'jquery', 'application'
+    %script{ :type => "text/javascript", :charset => "utf-8" }
+      jQuery.noConflict();
+      jQuery(document).ready(function(){
+      jQuery('textarea').prettyComments({animate: false, maxHeight:300});
+      });
+    = javascript_include_tag 'plugins/prettyComments'
+  %body
+    #container
+      #header
+        #links
+          %ul
+            - if logged_in?
+              %li
+                = link_to 'Logout', logout_path
+            - else
+              %li
+                = link_to 'Login', login_path
+              %li
+                = link_to 'Signup', signup_path
+      #content
+        = flash_messages
+        = yield :layout

@@ -4,7 +4,7 @@ class ChildrenController < ApplicationController
   # GET /children
   # GET /children.xml
   def index
-    @children = child.find(:all)
+    @children = Child.find(:all)
 
     respond_to do |wants|
       wants.html # index.html.erb
