@@ -17,6 +17,10 @@ class Profile < ActiveRecord::Base
 
   validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
 
+  MALE = 0
+  FEMALE = 1
+  validates_inclusion_of :gender, :in => [MALE, FEMALE]
+
   belongs_to :user
   has_one :contact_info, :dependent => :destroy
   has_one :profile_photo, :as => :attachable, :dependent => :destroy
@@ -32,8 +36,7 @@ class Profile < ActiveRecord::Base
 
   after_update :save_high_schools, :save_colleges, :save_employers, :save_contact_info
 
-  MALE = 0
-  FEMALE = 1
+
 
   def existing_high_school_attendance_attributes=(attributes) set_existing_model_attributes(:high_school_attendances, "high_school", HighSchool, attributes); end
   def new_high_school_attendance_attributes=(attributes) set_new_model_attributes(:high_school_attendances, attributes); end

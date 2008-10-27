@@ -7,12 +7,20 @@
     %br
     = f.text_field :name
   %p
+    = f.label :nickname, "Nick Name:"
+    %br
+    = f.text_field :nickname
+  %p
     = f.label :birthdate, "Birthdate:"
     %br
     = f.text_field :birthdate
   %p
     = f.label :not_born, 'Child is not born yet'
     = f.check_box :not_born
+  %p
+    = f.label :gender, "Child's Gender:"
+    %br
+    = f.select :gender, gender_options, :include_blank => "Select a gender..."
   %p
     = f.label :public, "My Child's Profile is:"
     %br

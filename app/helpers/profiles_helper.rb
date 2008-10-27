@@ -32,6 +32,6 @@ module ProfilesHelper
   end
 
   def gender_options
-    [["Male", 1], ["Female", 0]]
+    [["Male", Profile::MALE], ["Female", Profile::FEMALE]]
   end
 end

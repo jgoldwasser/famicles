@@ -8,6 +8,7 @@ describe Child do
       :famicle_id => 1,
       :name => "value for name",
       :birthdate => Date.today,
+      :gender => Child::MALE,
       :not_born => false,
       :public => ApplicationController::PUBLIC,
       :tracked => false
@@ -22,6 +23,7 @@ describe Child do
     Child.create(@valid_attributes.except(:famicle_id)).save.should eql(false)
     Child.create(@valid_attributes.except(:name)).save.should eql(false)
     Child.create(@valid_attributes.except(:public)).save.should eql(false)
+    Child.create(@valid_attributes.except(:gender)).save.should eql(false)
   end
 
   it "should create a new instance with only required attributes" do
