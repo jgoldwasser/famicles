@@ -37,7 +37,7 @@ class ChildrenController < ApplicationController
 
     if @child.save
       flash[:notice] = "Child was successfully crreated."
-      redirect_to famicle_path(@child.famicle)
+      redirect_to famicle_children_path(@famicle)
     else
       render :action => :new
     end
@@ -47,7 +47,7 @@ class ChildrenController < ApplicationController
     @child = Child.find(params[:id])
     if @child.update_attributes(params[:child])
       flash[:notice] = "Successfully updated child"
-      redirect_to famcile_child_path(@child)
+      redirect_to famicle_children_path(@famicle)
     else
       render :action => :edit
     end

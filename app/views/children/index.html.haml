@@ -3,5 +3,6 @@
 
 %ul
   - for child in @children
-    %li= child.name
+    %li
+      = link_to child.name, edit_famicle_child_path(@famicle, child)
     
