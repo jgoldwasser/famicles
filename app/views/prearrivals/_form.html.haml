@@ -1,6 +1,6 @@
-= error_messages_for :pre_delivery_info
+= error_messages_for :prearrival
 
-- form_for [@child.famicle, @child, @pre_delivery_info], :html => {:multipart => true} do |f|
+- form_for [@child.famicle, @child, @prearrival], :html => {:multipart => true} do |f|
   %fieldset
     %legend General Info
 
@@ -38,19 +38,19 @@
 
   %fieldset
     %legend Photos
-    - fields_for 'pre_delivery_info[belly_photo_data]', @pre_delivery_info.belly_photo  do |photo_form|
+    - fields_for 'prearrival[belly_photo_data]', @prearrival.belly_photo  do |photo_form|
       %p Belly Photo:
-      = image_tag(@pre_delivery_info.belly_photo.public_filename(:thumb)) unless @pre_delivery_info.belly_photo.nil?
+      = image_tag(@prearrival.belly_photo.public_filename(:thumb)) unless @prearrival.belly_photo.nil?
       = photo_form.file_field :uploaded_data
 
-    - fields_for 'pre_delivery_info[nursery_photo_data]', @pre_delivery_info.nursery_photo  do |photo_form|
+    - fields_for 'prearrival[nursery_photo_data]', @prearrival.nursery_photo  do |photo_form|
       %p Nursery Photo:
-      = image_tag(@pre_delivery_info.nursery_photo.public_filename(:thumb)) unless @pre_delivery_info.nursery_photo.nil?
+      = image_tag(@prearrival.nursery_photo.public_filename(:thumb)) unless @prearrival.nursery_photo.nil?
       = photo_form.file_field :uploaded_data
 
-    - fields_for 'pre_delivery_info[first_baby_photo_data]', @pre_delivery_info.first_baby_photo  do |photo_form|
+    - fields_for 'prearrival[first_baby_photo_data]', @prearrival.first_baby_photo  do |photo_form|
       %p First Baby Photo:
-      = image_tag(@pre_delivery_info.first_baby_photo.public_filename(:thumb)) unless @pre_delivery_info.first_baby_photo.nil?
+      = image_tag(@prearrival.first_baby_photo.public_filename(:thumb)) unless @prearrival.first_baby_photo.nil?
       = photo_form.file_field :uploaded_data
 
   = submit_tag 'Save', :disable_with => 'Saving...'

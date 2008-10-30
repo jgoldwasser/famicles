@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20081029042105) do
     t.datetime "updated_at"
   end
 
-  create_table "pre_delivery_infos", :force => true do |t|
+  create_table "prearrivals", :force => true do |t|
     t.integer  "child_id"
     t.string   "fetus_nickname",   :limit => 50
     t.date     "due_date"

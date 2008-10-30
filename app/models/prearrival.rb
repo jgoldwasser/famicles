@@ -1,4 +1,4 @@
-class PreDeliveryInfo < ActiveRecord::Base
+class Prearrival < ActiveRecord::Base
   belongs_to :child
 
   has_many :profile_photos, :as => :attachable, :dependent => :destroy

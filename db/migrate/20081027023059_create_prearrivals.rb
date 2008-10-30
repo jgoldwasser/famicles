@@ -1,6 +1,6 @@
-class CreatePreDeliveryInfos < ActiveRecord::Migration
+class CreatePrearrivals < ActiveRecord::Migration
   def self.up
-    create_table :pre_delivery_infos do |t|
+    create_table :prearrivals do |t|
       t.integer :child_id
       t.string :fetus_nickname, :limit => 50
       t.date :due_date
@@ -13,6 +13,6 @@ class CreatePreDeliveryInfos < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :pre_delivery_infos
+    drop_table :prearrivals
   end
 end

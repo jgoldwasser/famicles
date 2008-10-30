@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profiles
   map.resources :famicles do |famicles|
     famicles.resources :children do |children|
-      children.resources :pre_delivery_infos
+      children.resources :prearrivals
     end
   end
 

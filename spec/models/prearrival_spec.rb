@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe PreDeliveryInfo do
+describe Prearrival do
   before(:each) do
     @valid_attributes = {
       :child_id => "1",
@@ -12,6 +12,6 @@ describe PreDeliveryInfo do
   end
 
   it "should create a new instance given valid attributes" do
-    PreDeliveryInfo.create!(@valid_attributes)
+    Prearrival.create!(@valid_attributes)
   end
 end
