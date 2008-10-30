@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  include ProfilePhotoPersistence
+  include PhotoPersistence
 
   validates_presence_of :user_id
   validates_presence_of :full_name
@@ -23,7 +23,7 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
   has_one :contact_info, :dependent => :destroy
-  has_one :profile_photo, :as => :attachable, :dependent => :destroy
+  has_one :photo, :as => :attachable, :dependent => :destroy
   has_many :high_school_attendances, :dependent => :destroy
   has_many :college_attendances, :dependent => :destroy
   has_many :employments, :dependent => :destroy

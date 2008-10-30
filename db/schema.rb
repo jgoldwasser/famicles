@@ -145,19 +145,7 @@ ActiveRecord::Schema.define(:version => 20081029042105) do
     t.datetime "updated_at"
   end
 
-  create_table "prearrivals", :force => true do |t|
-    t.integer  "child_id"
-    t.string   "fetus_nickname",   :limit => 50
-    t.date     "due_date"
-    t.string   "nursery_theme"
-    t.date     "baby_shower_date"
-    t.string   "how_we_found_out", :limit => 2000
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "profile_photos", :force => true do |t|
-    t.integer  "profile_id"
+  create_table "photos", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "attachable_id"
     t.string   "attachable_type"
@@ -171,8 +159,19 @@ ActiveRecord::Schema.define(:version => 20081029042105) do
     t.datetime "updated_at"
   end
 
-  add_index "profile_photos", ["parent_id"], :name => "index_profile_photos_on_parent_id"
-  add_index "profile_photos", ["attachable_id", "attachable_type"], :name => "index_profile_photos_on_attachable_id_and_attachable_type"
+  add_index "photos", ["parent_id"], :name => "index_photos_on_parent_id"
+  add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
+
+  create_table "prearrivals", :force => true do |t|
+    t.integer  "child_id"
+    t.string   "fetus_nickname",   :limit => 50
+    t.date     "due_date"
+    t.string   "nursery_theme"
+    t.date     "baby_shower_date"
+    t.string   "how_we_found_out", :limit => 2000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id",                                                  :null => false

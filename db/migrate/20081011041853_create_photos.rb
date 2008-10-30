@@ -1,7 +1,6 @@
-class CreateProfilePhotos < ActiveRecord::Migration
+class CreatePhotos < ActiveRecord::Migration
   def self.up
-    create_table :profile_photos do |t|
-      t.integer :profile_id
+    create_table :photos do |t|
       t.integer :parent_id
       t.integer :attachable_id
       t.string :attachable_type
@@ -14,11 +13,11 @@ class CreateProfilePhotos < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :profile_photos, :parent_id
-    add_index :profile_photos, [:attachable_id, :attachable_type]
+    add_index :photos, :parent_id
+    add_index :photos, [:attachable_id, :attachable_type]
   end
 
   def self.down
-    drop_table :profile_photos
+    drop_table :photos
   end
 end

@@ -2,9 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 include FamicleTestHelper
 
-describe ProfilePhoto do
+describe Photo do
   before(:all) do
-    ProfilePhoto.attachment_options[:path_prefix] =
+    Photo.attachment_options[:path_prefix] =
         "#{TEST_DIR}/images"
   end
 
@@ -13,8 +13,7 @@ describe ProfilePhoto do
   end
 
   it "should create a new instance given valid attributes" do
-    @image = ProfilePhoto.new
-    @image.profile_id = 1
+    @image = Photo.new
     @image.uploaded_data = fixture_file_upload("images/profile.jpg", "image/jpg")
     @image.save
   end
@@ -22,7 +21,7 @@ end
 # == Schema Info
 # Schema version: 20081011041853
 #
-# Table name: profile_photos
+# Table name: photos
 #
 #  id           :integer(4)      not null, primary key
 #  parent_id    :integer(4)

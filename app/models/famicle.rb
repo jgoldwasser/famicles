@@ -1,5 +1,5 @@
 class Famicle < ActiveRecord::Base
-  include ProfilePhotoPersistence
+  include PhotoPersistence
 
   validates_presence_of :name
   validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
@@ -13,7 +13,7 @@ class Famicle < ActiveRecord::Base
 
   # Invitations 
   has_many :famicle_invitations
-  has_one :profile_photo, :as => :attachable, :dependent => :destroy
+  has_one :photo, :as => :attachable, :dependent => :destroy
 
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}

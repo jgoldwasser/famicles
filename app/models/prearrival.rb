@@ -1,7 +1,7 @@
 class Prearrival < ActiveRecord::Base
   belongs_to :child
 
-  has_many :profile_photos, :as => :attachable, :dependent => :destroy
+  has_many :photos, :as => :attachable, :dependent => :destroy
 
   def belly_photo_data=(data) update_photo("belly", data); end
   def nursery_photo_data=(data) update_photo("nursery", data); end
@@ -13,17 +13,17 @@ class Prearrival < ActiveRecord::Base
 
 private
   def update_photo(tag, data)
-    if self.profile_photos.tagged_with(tag, :on => :pre_arrival_infos).empty?
-      photo = ProfilePhoto.new(data)
+    if self.photos.tagged_with(tag, :on => :pre_arrival_infos).empty?
+      photo = Photo.new(data)
       photo.pre_arrival_info_list = tag
-      self.profile_photos << photo
+      self.photos << photo
     else
-      self.profile_photos.tagged_with(tag, :on => :pre_arrival_infos).first.update_attributes(data)
+      self.photos.tagged_with(tag, :on => :pre_arrival_infos).first.update_attributes(data)
     end
   end
 
   def get_photo(tag)
-    profile_photos.tagged_with(tag, :on => :pre_arrival_infos).first
+    photos.tagged_with(tag, :on => :pre_arrival_infos).first
   end
 
 end

@@ -5,9 +5,9 @@ include FamicleTestHelper
 
 describe Profile do
   before(:all) do
-    ProfilePhoto.attachment_options[:path_prefix] =
+    Photo.attachment_options[:path_prefix] =
         "#{TEST_DIR}/images"
-    @image = ProfilePhoto.new :uploaded_data =>
+    @image = Photo.new :uploaded_data =>
         fixture_file_upload("images/profile.jpg", "image/jpg")
   end
 
@@ -26,7 +26,7 @@ describe Profile do
         :public_birthdate_display => 1,
         :about_me => "value for about_me",
         :timezone => "Pacific Time (US & Canada)",
-        :profile_photo => @image,
+        :photo => @image,
         :public => ApplicationController::PUBLIC
     }
   end

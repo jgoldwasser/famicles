@@ -33,9 +33,9 @@
     No
     = f.radio_button :tracked, "false"
   %p
-    - fields_for 'child[profile_photo_data]', @child.profile_photo do |photo_form|
+    - fields_for 'child[photo_data]', @child.photo do |photo_form|
       %p Photo:
-      = image_tag(@child.profile_photo.public_filename(:thumb)) unless @child.profile_photo.nil?
+      = image_tag(@child.photo.public_filename(:thumb)) unless @child.photo.nil?
       = photo_form.file_field :uploaded_data
   %br
   %br

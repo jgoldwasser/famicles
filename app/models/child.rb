@@ -1,5 +1,5 @@
 class Child < ActiveRecord::Base
-  include ProfilePhotoPersistence
+  include PhotoPersistence
   
   validates_presence_of :famicle_id
   validates_presence_of :name
@@ -7,7 +7,7 @@ class Child < ActiveRecord::Base
 
 
   belongs_to :famicle
-  has_one :profile_photo, :as => :attachable, :dependent => :destroy
+  has_one :photo, :as => :attachable, :dependent => :destroy
 
   # Gender Options
   MALE = 0
