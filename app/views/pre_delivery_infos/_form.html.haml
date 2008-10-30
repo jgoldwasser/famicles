@@ -1,0 +1,56 @@
+= error_messages_for :pre_delivery_info
+
+- form_for [@child.famicle, @child, @pre_delivery_info], :html => {:multipart => true} do |f|
+  %fieldset
+    %legend General Info
+
+    %p
+      = f.label :due_date
+      %br
+      = f.text_field :due_date
+
+    %p
+      Baby Gender:
+      = @child.gender_display
+
+    %p
+      Baby Name:
+      = @child.name
+
+    %p
+      = f.label :fetus_nickname, 'Baby Nickname'
+      %br
+      = f.text_field :fetus_nickname
+
+    %p
+      = f.label :nursery_theme
+      %br
+      = f.text_field :nursery_theme
+
+    %p
+      = f.label :baby_shower_date
+      %br
+      = f.text_field :baby_shower_date
+
+  %fieldset
+    %legend How We Found Out
+    = f.text_area :how_we_found_out
+
+  %fieldset
+    %legend Photos
+    - fields_for 'pre_delivery_info[belly_photo_data]', @pre_delivery_info.belly_photo  do |photo_form|
+      %p Belly Photo:
+      = image_tag(@pre_delivery_info.belly_photo.public_filename(:thumb)) unless @pre_delivery_info.belly_photo.nil?
+      = photo_form.file_field :uploaded_data
+
+    - fields_for 'pre_delivery_info[nursery_photo_data]', @pre_delivery_info.nursery_photo  do |photo_form|
+      %p Nursery Photo:
+      = image_tag(@pre_delivery_info.nursery_photo.public_filename(:thumb)) unless @pre_delivery_info.nursery_photo.nil?
+      = photo_form.file_field :uploaded_data
+
+    - fields_for 'pre_delivery_info[first_baby_photo_data]', @pre_delivery_info.first_baby_photo  do |photo_form|
+      %p First Baby Photo:
+      = image_tag(@pre_delivery_info.first_baby_photo.public_filename(:thumb)) unless @pre_delivery_info.first_baby_photo.nil?
+      = photo_form.file_field :uploaded_data
+
+  = submit_tag 'Save', :disable_with => 'Saving...'

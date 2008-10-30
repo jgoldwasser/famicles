@@ -31,6 +31,12 @@
                 = link_to 'Login', login_path
               %li
                 = link_to 'Signup', signup_path
+
+        
       #content
         = flash_messages
         = yield :layout
+      #right
+        #photos
+          .profile_pic= image_tag("jack_profilepic.jpg")
+          .profile_frame= image_tag("profilepicframe.gif")

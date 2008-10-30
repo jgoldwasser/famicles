@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  child_id: 1
+  due_date: 2008-10-26
+  nursery_theme: MyString
+  baby_shower_date: 2008-10-26
+  how_we_found_out: MyString
+
+two:
+  child_id: 1
+  due_date: 2008-10-26
+  nursery_theme: MyString
+  baby_shower_date: 2008-10-26
+  how_we_found_out: MyString

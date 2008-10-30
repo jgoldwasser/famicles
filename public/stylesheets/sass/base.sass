@@ -1,3 +1,5 @@
+@import font
+
 textarea
   :height 50px
 
@@ -30,6 +32,32 @@ div.fieldWithErrors textarea
 
 // === HEADER ===
 #links
-  :text-align right
-  a
-    :margin-right 15px
+  :position absolute
+  :right 10px
+  :top -15px
+
+// === MAIN LAYOUT ===
+#container
+  :position relative
+  :width 900px
+  :margin 0 auto
+  :padding 10px
+
+// === PHOTO TESTS ===
+#right
+  :float right
+#photos
+  :position relative
+  .profile_pic
+    :position absolute
+    :top -200px
+    :left -300px
+    :z-index 0
+  .profile_frame
+    :position absolute
+    :top -200px
+    :left -300px
+    :z-index 1
+#content
+  :position relative
+  :margin-top 100px      

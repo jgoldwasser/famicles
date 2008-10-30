@@ -15,4 +15,15 @@ class Child < ActiveRecord::Base
   UNKNOWN = 2
   
   validates_inclusion_of :gender, :in => [MALE, FEMALE, UNKNOWN]
+
+  def gender_display
+    case gender
+    when MALE
+      "Male"
+    when FEMALE
+      "Female"
+    when UNKNOWN
+      "Not yet known"
+    end
+  end
 end

@@ -18,7 +18,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resource :session
   map.resources :profiles
-  map.resources :famicles, :has_many => :children
+  map.resources :famicles do |famicles|
+    famicles.resources :children do |children|
+      children.resources :pre_delivery_infos
+    end
+  end
 
   
 

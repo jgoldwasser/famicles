@@ -9,14 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081025204332) do
+ActiveRecord::Schema.define(:version => 20081029042105) do
 
   create_table "children", :force => true do |t|
     t.integer  "famicle_id"
-    t.string   "name"
+    t.string   "name",       :limit => 50
+    t.string   "nickname",   :limit => 50
     t.date     "birthdate"
+    t.integer  "gender",     :limit => 1,  :null => false
     t.boolean  "not_born"
-    t.integer  "public",     :limit => 1, :null => false
+    t.integer  "public",     :limit => 1,  :null => false
     t.boolean  "tracked"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -143,6 +145,17 @@ ActiveRecord::Schema.define(:version => 20081025204332) do
     t.datetime "updated_at"
   end
 
+  create_table "pre_delivery_infos", :force => true do |t|
+    t.integer  "child_id"
+    t.string   "fetus_nickname",   :limit => 50
+    t.date     "due_date"
+    t.string   "nursery_theme"
+    t.date     "baby_shower_date"
+    t.string   "how_we_found_out", :limit => 2000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profile_photos", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "parent_id"
@@ -208,6 +221,23 @@ ActiveRecord::Schema.define(:version => 20081025204332) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "taggable_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                      :limit => 100, :default => ""

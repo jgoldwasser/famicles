@@ -25,3 +25,6 @@
 [submodule "vendor/plugins/rspec-rails-mocha"]
 	path = vendor/plugins/rspec-rails-mocha
 	url = git@github.com:jgoldwasser/rspec-rails-mocha.git
+[submodule "vendor/plugins/acts-as-taggable-on"]
+	path = vendor/plugins/acts-as-taggable-on
+	url = git@github.com:jgoldwasser/acts-as-taggable-on.git
