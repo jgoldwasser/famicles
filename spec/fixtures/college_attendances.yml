@@ -12,7 +12,7 @@ two:
   class_year: 1
   major: MyString
 # == Schema Info
-# Schema version: 20081011041853
+# Schema version: 20081031044001
 #
 # Table name: college_attendances
 #

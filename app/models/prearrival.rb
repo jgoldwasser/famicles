@@ -27,3 +27,18 @@ private
   end
 
 end
+# == Schema Info
+# Schema version: 20081031044001
+#
+# Table name: prearrivals
+#
+#  id               :integer(4)      not null, primary key
+#  child_id         :integer(4)
+#  baby_shower_date :date
+#  due_date         :date
+#  fetus_nickname   :string(50)
+#  how_we_found_out :string(2000)
+#  nursery_theme    :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+

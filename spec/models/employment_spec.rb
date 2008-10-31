@@ -35,7 +35,7 @@ describe Employment do
   end
 end
 # == Schema Info
-# Schema version: 20081011041853
+# Schema version: 20081031044001
 #
 # Table name: employments
 #

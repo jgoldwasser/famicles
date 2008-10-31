@@ -154,7 +154,7 @@ describe Profile do
 
 end
 # == Schema Info
-# Schema version: 20081011041853
+# Schema version: 20081031044001
 #
 # Table name: profiles
 #
@@ -168,11 +168,10 @@ end
 #  favorite_tv              :string(2000)
 #  full_name                :string(50)      not null, default("")
 #  gender                   :integer(1)      not null
-#  gender_public            :boolean(1)      default(TRUE)
 #  hometown                 :string(100)
 #  parenting_style          :string(100)
 #  political_view           :string(100)
-#  public                   :boolean(1)      default(TRUE)
+#  public                   :integer(1)      not null
 #  public_birthdate_display :integer(1)      not null
 #  religious_view           :string(100)
 #  timezone                 :string(50)      not null, default("")

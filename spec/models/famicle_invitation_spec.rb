@@ -154,7 +154,7 @@ describe FamicleInvitation do
 
 end
 # == Schema Info
-# Schema version: 20081011041853
+# Schema version: 20081031044001
 #
 # Table name: famicle_invitations
 #

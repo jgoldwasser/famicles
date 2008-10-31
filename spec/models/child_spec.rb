@@ -30,3 +30,20 @@ describe Child do
     Child.create(@valid_attributes.except(:birthdate)).save.should eql(true)
   end
 end
+# == Schema Info
+# Schema version: 20081031044001
+#
+# Table name: children
+#
+#  id         :integer(4)      not null, primary key
+#  famicle_id :integer(4)
+#  birthdate  :date
+#  gender     :integer(1)      not null
+#  name       :string(50)
+#  nickname   :string(50)
+#  not_born   :boolean(1)
+#  public     :integer(1)      not null
+#  tracked    :boolean(1)
+#  created_at :datetime
+#  updated_at :datetime
+
