@@ -19,8 +19,16 @@ module FamicleTestHelper
     Profile.new({:user => user, :timezone => "Pacific Time (US & Canada)", :gender => Profile::MALE, :full_name => "Tommy Bahama", :birthdate => 20.years.ago, :public_birthdate_display => Profile::PUBLIC_BIRTHDATE_DISPLAY_FULL, :public => ApplicationController::PUBLIC})
   end
 
+  def create_prearrival
+    famicle = create_famicle(@user)
+
+    @child = Child.create!(:famicle => famicle, :tracked => true, :name => "Jack", :gender => Child::MALE, :public => ApplicationController::PUBLIC)
+    @prearrival = Prearrival.create!(:child => @child, :fetus_nickname => "Bean", :conception_date => 2.months.ago)
+  end
+
   def setup_user_with_profile
     @user = create_user
+
     @user.activate!
     @profile = create_profile_for_user(@user)
     @profile.contact_info = ContactInfo.new({:profile => @profile})

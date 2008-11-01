@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081029042105) do
+ActiveRecord::Schema.define(:version => 20081031044850) do
 
   create_table "children", :force => true do |t|
     t.integer  "famicle_id"
@@ -166,9 +166,23 @@ ActiveRecord::Schema.define(:version => 20081029042105) do
     t.integer  "child_id"
     t.string   "fetus_nickname",   :limit => 50
     t.date     "due_date"
+    t.date     "conception_date"
     t.string   "nursery_theme"
     t.date     "baby_shower_date"
     t.string   "how_we_found_out", :limit => 2000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pregnancy_stats", :force => true do |t|
+    t.integer  "prearrival_id",                                                    :null => false
+    t.date     "date",                                                             :null => false
+    t.integer  "week"
+    t.integer  "weight",              :limit => 10, :precision => 10, :scale => 0
+    t.integer  "weight_gain",         :limit => 10, :precision => 10, :scale => 0
+    t.integer  "blood_pressure"
+    t.integer  "stomach_measurement", :limit => 10, :precision => 10, :scale => 0
+    t.integer  "baby_heartrate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

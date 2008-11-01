@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  prearrival_id: 1
+  date: 2008-10-30
+  weight: 9.99
+  blood_pressure: 1
+  stomach_measurement: 9.99
+  baby_heartrate: 1
+
+two:
+  prearrival_id: 1
+  date: 2008-10-30
+  weight: 9.99
+  blood_pressure: 1
+  stomach_measurement: 9.99
+  baby_heartrate: 1

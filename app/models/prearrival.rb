@@ -2,6 +2,7 @@ class Prearrival < ActiveRecord::Base
   belongs_to :child
 
   has_many :photos, :as => :attachable, :dependent => :destroy
+  has_many :pregnancy_stats, :dependent => :destroy
 
   def belly_photo_data=(data) update_photo("belly", data); end
   def nursery_photo_data=(data) update_photo("nursery", data); end

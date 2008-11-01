@@ -7,6 +7,7 @@ describe Child do
     @valid_attributes = {
       :famicle_id => 1,
       :name => "value for name",
+      :nickname => "value for nickname",
       :birthdate => Date.today,
       :gender => Child::MALE,
       :not_born => false,
