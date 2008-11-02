@@ -26,6 +26,7 @@ describe UsersController do
     assigns(:user).reload
     assigns(:user).activation_code.should_not be_nil
   end
+  
   it 'requires login on signup' do
     lambda do
       create_user(:email => nil)

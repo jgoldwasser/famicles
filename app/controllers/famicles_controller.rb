@@ -34,9 +34,9 @@ class FamiclesController < ApplicationController
   def create
     @famicle = Famicle.new(params[:famicle])
 
-    if current_user.famicle_memberships.create!(:famicle => @famicle, :role => "creator", :default => true)
+    if @famicle.save && current_user.famicle_memberships.create!(:famicle => @famicle, :role => "creator", :default => true)
       flash[:notice] = "Famicle was successfully crreated."
-      redirect_to famicles_url
+      redirect_to famicle_path(@famicle)
     else
       render :action => :new
     end

@@ -11,8 +11,7 @@ describe Child do
       :birthdate => Date.today,
       :gender => Child::MALE,
       :not_born => false,
-      :public => ApplicationController::PUBLIC,
-      :tracked => false
+      :public => ApplicationController::PUBLIC
     }
   end
 

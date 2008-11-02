@@ -25,7 +25,7 @@ class ChildrenController < ApplicationController
 
   # GET /famicles/:famicle_id/children/new
   def new
-    @child = Child.new(:famicle => @famicle, :tracked => true)
+    @child = Child.new(:famicle => @famicle)
   end
 
   def edit
@@ -36,8 +36,8 @@ class ChildrenController < ApplicationController
     @child = Child.new(params[:child])
 
     if @child.save
-      flash[:notice] = "Child was successfully crreated."
-      redirect_to famicle_children_path(@famicle)
+      flash[:notice] = "#{@child.name} was successfully crreated."
+      redirect_to famicle_child_path(@famicle, @child)
     else
       render :action => :new
     end
@@ -46,8 +46,8 @@ class ChildrenController < ApplicationController
   def update
     @child = Child.find(params[:id])
     if @child.update_attributes(params[:child])
-      flash[:notice] = "Successfully updated child"
-      redirect_to famicle_children_path(@famicle)
+      flash[:notice] = "Successfully updated #{@child.name}"
+      redirect_to famicle_child_path(@famicle, @child)
     else
       render :action => :edit
     end

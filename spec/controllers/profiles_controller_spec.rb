@@ -14,7 +14,7 @@ describe ProfilesController, "creating a new profile" do
     ProfilesController.any_instance.stubs(:current_user).returns(@user)
   end
 
-  it "should redirect to index with a notice on successful save" do
+  it "should redirect to create famicle with a notice on successful save" do
     lambda do
       create_profile
       assigns[:profile].should_not be_new_record
@@ -23,7 +23,7 @@ describe ProfilesController, "creating a new profile" do
     end.should change(Profile, :count).by(1)
   end
 
-  it "should re-render new tempalte on failed save"  do
+  it "should re-render new template on failed save"  do
     Profile.any_instance.stubs(:save).returns(false)
     create_profile
     assigns[:profile].should be_new_record

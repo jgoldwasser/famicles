@@ -26,13 +26,6 @@
     %br
     = f.select :public, public_private_options
   %p
-    Track Child's Development:
-    %br
-    Yes
-    = f.radio_button :tracked, "true"
-    No
-    = f.radio_button :tracked, "false"
-  %p
     - fields_for 'child[photo_data]', @child.photo do |photo_form|
       %p Photo:
       = image_tag(@child.photo.public_filename(:thumb)) unless @child.photo.nil?

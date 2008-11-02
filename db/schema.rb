@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
     t.integer  "gender",     :limit => 1,  :null => false
     t.boolean  "not_born"
     t.integer  "public",     :limit => 1,  :null => false
-    t.boolean  "tracked"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
     t.datetime "updated_at"
   end
 
-  add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
   add_index "famicle_memberships", ["famicle_id"], :name => "index_famicle_memberships_on_famicle_id"
+  add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
 
   create_table "famicles", :force => true do |t|
     t.string   "name",                       :default => "", :null => false
@@ -159,8 +158,8 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["parent_id"], :name => "index_photos_on_parent_id"
   add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
+  add_index "photos", ["parent_id"], :name => "index_photos_on_parent_id"
 
   create_table "prearrivals", :force => true do |t|
     t.integer  "child_id"

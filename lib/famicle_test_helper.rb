@@ -22,7 +22,7 @@ module FamicleTestHelper
   def create_prearrival
     famicle = create_famicle(@user)
 
-    @child = Child.create!(:famicle => famicle, :tracked => true, :name => "Jack", :gender => Child::MALE, :public => ApplicationController::PUBLIC)
+    @child = Child.create!(:famicle => famicle, :name => "Jack", :gender => Child::MALE, :public => ApplicationController::PUBLIC)
     @prearrival = Prearrival.create!(:child => @child, :fetus_nickname => "Bean", :conception_date => 2.months.ago)
   end
 

@@ -5,14 +5,12 @@ one:
   birthdate: 2008-10-25
   born: false
   public: 1
-  tracked: false
 
 two:
   name: MyString
   birthdate: 2008-10-25
   born: false
   public: 1
-  tracked: false
 # == Schema Info
 # Schema version: 20081031044001
 #

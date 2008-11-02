@@ -53,4 +53,20 @@
       = image_tag(@prearrival.first_baby_photo.public_filename(:thumb)) unless @prearrival.first_baby_photo.nil?
       = photo_form.file_field :uploaded_data
 
+  %fieldset
+    %legend Mommy's Pregnancy
+    %table.pregnancy_stats
+      %thead
+        %tr
+          %th Date
+          %th Week
+          %th Weight
+          %th Weight Gain
+          %th Blood Pressure
+          %th Stomach Measurement
+          %th Baby's Heart Rate
+      %tbody{:id => 'preg_stats_body'}
+        = render :partial => 'pregnancy_stat', :collection => @prearrival.pregnancy_stats
+
+    = add_stat_link "Add entry"
   = submit_tag 'Save', :disable_with => 'Saving...'
