@@ -8,6 +8,7 @@ class Child < ActiveRecord::Base
 
   belongs_to :famicle
   has_one :photo, :as => :attachable, :dependent => :destroy
+  has_one :prearrival, :dependent => :destroy
 
   # Gender Options
   MALE = 0

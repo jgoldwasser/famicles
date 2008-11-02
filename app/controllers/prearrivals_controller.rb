@@ -26,7 +26,7 @@ class PrearrivalsController < ApplicationController
 
     if @prearrival.save
       flash[:notice] = "prearrival was successfully crreated."
-      redirect_to famicle_child_prearrival_path(@child.famicle, @child, @prearrival)
+      redirect_to famicle_child_path(@child.famicle, @child)
     else
       render :action => :new
     end

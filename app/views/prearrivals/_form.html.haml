@@ -1,6 +1,7 @@
 = error_messages_for :prearrival
 
 - form_for [@child.famicle, @child, @prearrival], :html => {:multipart => true} do |f|
+  = f.hidden_field :child_id
   %fieldset
     %legend General Info
 

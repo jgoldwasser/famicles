@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       if user.profile.blank?
         redirect_to :controller => :profiles, :action => :new
       else
-        redirect_back_or_default('/')
+        redirect_to famicle_path(user.default_famicle)
       end
       
     else
