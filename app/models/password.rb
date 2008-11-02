@@ -24,7 +24,7 @@ end# == Schema Info
 #  updated_at      :datetime
 
 # == Schema Info
-# Schema version: 20081031044001
+# Schema version: 20081031044850
 #
 # Table name: passwords
 #

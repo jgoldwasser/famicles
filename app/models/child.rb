@@ -28,7 +28,7 @@ class Child < ActiveRecord::Base
   end
 end
 # == Schema Info
-# Schema version: 20081031044001
+# Schema version: 20081031044850
 #
 # Table name: children
 #
@@ -40,7 +40,6 @@ end
 #  nickname   :string(50)
 #  not_born   :boolean(1)
 #  public     :integer(1)      not null
-#  tracked    :boolean(1)
 #  created_at :datetime
 #  updated_at :datetime
 

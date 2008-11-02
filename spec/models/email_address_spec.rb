@@ -26,7 +26,7 @@ describe EmailAddress do
   end
 end
 # == Schema Info
-# Schema version: 20081031044001
+# Schema version: 20081031044850
 #
 # Table name: email_addresses
 #

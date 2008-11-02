@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
   belongs_to :attachable, :polymorphic => true
 end
 # == Schema Info
-# Schema version: 20081031044001
+# Schema version: 20081031044850
 #
 # Table name: photos
 #
