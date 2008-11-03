@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
 
+  before_filter :set_current_tab
+
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery  :secret => '99b4f5d6a98b61bd3424e2e5cc7ac27d'
@@ -15,4 +17,9 @@ class ApplicationController < ActionController::Base
 
   PUBLIC  = 1
   PRIVATE = 2
+
+private
+  def set_current_tab
+    @current_tab = 'famicles'
+  end
 end

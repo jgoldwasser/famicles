@@ -46,4 +46,8 @@ private
   def load_child
     @child = Child.find(params[:child_id])
   end
+
+  def set_current_tab
+    @current_tab = 'children'
+  end
 end

@@ -4,7 +4,5 @@
 %ul
   - for child in @children
     %li
-      = link_to child.name, edit_famicle_child_path(@famicle, child)
-      |
-      = link_to 'Pre Arrival Info', new_famicle_child_prearrival_path(@famicle, child)
+      = link_to child.name, famicle_child_path(@famicle, child)
     

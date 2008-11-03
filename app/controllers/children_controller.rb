@@ -39,6 +39,7 @@ class ChildrenController < ApplicationController
       flash[:notice] = "#{@child.name} was successfully crreated."
       redirect_to famicle_child_path(@famicle, @child)
     else
+      @child.photo = nil
       render :action => :new
     end
   end
@@ -56,5 +57,9 @@ class ChildrenController < ApplicationController
 private
   def load_famicle
     @famicle = Famicle.find(params[:famicle_id])
+  end
+
+  def set_current_tab
+    @current_tab = 'children'
   end
 end

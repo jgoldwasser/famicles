@@ -21,4 +21,8 @@ module ApplicationHelper
   def public_private_options
     [["Public", ApplicationController::PUBLIC], ["Private", ApplicationController::PRIVATE]]
   end
+
+  def show_famicle_menu?
+    logged_in? && current_user.default_famicle.blank? == false
+  end
 end
