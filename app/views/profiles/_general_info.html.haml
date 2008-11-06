@@ -3,10 +3,10 @@
   = label_tag 'profile_full_name', 'Your Full Name'
   %br
   = f.text_field :full_name
-- fields_for 'profile[photo_data]', @profile.photo do |photo_form|
-  %p Photo:
-  = image_tag(@profile.photo.public_filename(:thumb)) unless @profile.photo.nil?
-  = photo_form.file_field :uploaded_data 
+%p
+  = f.label :photo, "Profile Photo:"
+  = image_tag @profile.photo.url(:small)
+  = f.file_field :photo
 %p
   = label_tag 'profile_birthdate', 'Birthdate'
   %br

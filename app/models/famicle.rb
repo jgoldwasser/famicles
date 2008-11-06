@@ -1,6 +1,4 @@
 class Famicle < ActiveRecord::Base
-  include PhotoPersistence
-
   validates_presence_of :name
   validates_inclusion_of :public, :in => [ApplicationController::PUBLIC, ApplicationController::PRIVATE]
 
@@ -13,7 +11,12 @@ class Famicle < ActiveRecord::Base
 
   # Invitations 
   has_many :famicle_invitations
-  has_one :photo, :as => :attachable, :dependent => :destroy
+
+  has_attached_file :photo, :styles => { :small => "150x150", :medium => "200x200" },
+                    :url => "/assets/famicle_photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/famicle_photos/:id/:style/:basename.:extension"
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   named_scope :public, :conditions => {:public => true}
   named_scope :private, :conditions => {:public => false}

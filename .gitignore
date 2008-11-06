@@ -10,3 +10,4 @@ doc/spec*.*
 tmp/*
 public/images/profiles/*
 public/stylesheets/*.css
+public/assets/*

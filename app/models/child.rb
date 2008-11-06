@@ -1,5 +1,4 @@
 class Child < ActiveRecord::Base
-  include PhotoPersistence
   
   validates_presence_of :famicle_id
   validates_presence_of :name
@@ -7,8 +6,16 @@ class Child < ActiveRecord::Base
 
 
   belongs_to :famicle
-  has_one :photo, :as => :attachable, :dependent => :destroy
   has_one :prearrival, :dependent => :destroy
+
+  has_attached_file :photo, :styles => { :small => "150x150", :medium => "200x200" },
+                    :url => "/assets/child_photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/child_photos/:id/:style/:basename.:extension"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+
 
   # Gender Options
   MALE = 0

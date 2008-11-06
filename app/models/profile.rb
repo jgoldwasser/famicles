@@ -1,5 +1,4 @@
 class Profile < ActiveRecord::Base
-  include PhotoPersistence
 
   validates_presence_of :user_id
   validates_presence_of :full_name
@@ -23,7 +22,6 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
   has_one :contact_info, :dependent => :destroy
-  has_one :photo, :as => :attachable, :dependent => :destroy
   has_many :high_school_attendances, :dependent => :destroy
   has_many :college_attendances, :dependent => :destroy
   has_many :employments, :dependent => :destroy
@@ -33,7 +31,13 @@ class Profile < ActiveRecord::Base
   has_many :colleges, :through => :college_attendances, :source => :college
   has_many :employers, :through => :employments, :source => :employer
 
+  has_attached_file :photo, :styles => { :small => "150x150", :medium => "200x200" },
+                    :url => "/assets/profile_photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/profile_photos/:id/:style/:basename.:extension"
 
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  
   after_update :save_high_schools, :save_colleges, :save_employers, :save_contact_info
 
 

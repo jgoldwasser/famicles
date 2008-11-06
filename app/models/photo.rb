@@ -1,8 +1,12 @@
 class Photo < ActiveRecord::Base
   acts_as_taggable_on :tags, :pre_arrival_infos
-  
-  has_attachment :max_size => 5.megabytes, :content_type => :image, :storage => :file_system, :resize_to => '320x200>', :thumbnails => {:thumb => '150x150>', :geometry => '250x250>'}, :path_prefix => "public/images/profiles"
-  validates_as_attachment
+
+  has_attached_file :image, :styles => { :small => "150x150", :medium => "200x200" },
+                    :url => "/assets/photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/photos/:id/:style/:basename.:extension"
+
+  validates_attachment_size :image, :less_than => 5.megabytes
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
   belongs_to :attachable, :polymorphic => true
 end

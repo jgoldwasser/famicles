@@ -41,18 +41,18 @@
     %legend Photos
     - fields_for 'prearrival[belly_photo_data]', @prearrival.belly_photo  do |photo_form|
       %p Belly Photo:
-      = image_tag(@prearrival.belly_photo.public_filename(:thumb)) unless @prearrival.belly_photo.nil?
-      = photo_form.file_field :uploaded_data
+      = image_tag(@prearrival.belly_photo.image.url(:small)) unless @prearrival.belly_photo.blank?
+      = photo_form.file_field :image
 
     - fields_for 'prearrival[nursery_photo_data]', @prearrival.nursery_photo  do |photo_form|
       %p Nursery Photo:
-      = image_tag(@prearrival.nursery_photo.public_filename(:thumb)) unless @prearrival.nursery_photo.nil?
-      = photo_form.file_field :uploaded_data
+      = image_tag(@prearrival.nursery_photo.image.url(:small)) unless @prearrival.nursery_photo.blank?
+      = photo_form.file_field :image
 
     - fields_for 'prearrival[first_baby_photo_data]', @prearrival.first_baby_photo  do |photo_form|
       %p First Baby Photo:
-      = image_tag(@prearrival.first_baby_photo.public_filename(:thumb)) unless @prearrival.first_baby_photo.nil?
-      = photo_form.file_field :uploaded_data
+      = image_tag(@prearrival.first_baby_photo.image.url(:small)) unless @prearrival.first_baby_photo.blank?
+      = photo_form.file_field :image
 
   %fieldset
     %legend Mommy's Pregnancy

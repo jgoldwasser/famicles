@@ -9,18 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081031044850) do
+ActiveRecord::Schema.define(:version => 20081105063617) do
 
   create_table "children", :force => true do |t|
     t.integer  "famicle_id"
-    t.string   "name",       :limit => 50
-    t.string   "nickname",   :limit => 50
+    t.string   "name",               :limit => 50
+    t.string   "nickname",           :limit => 50
     t.date     "birthdate"
-    t.integer  "gender",     :limit => 1,  :null => false
+    t.integer  "gender",             :limit => 1,  :null => false
     t.boolean  "not_born"
-    t.integer  "public",     :limit => 1,  :null => false
+    t.integer  "public",             :limit => 1,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "college_attendances", :force => true do |t|
@@ -105,13 +109,17 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
   add_index "famicle_memberships", ["user_id"], :name => "index_famicle_memberships_on_user_id"
 
   create_table "famicles", :force => true do |t|
-    t.string   "name",                       :default => "", :null => false
+    t.string   "name",                            :default => "", :null => false
     t.text     "description"
-    t.integer  "public",        :limit => 1,                 :null => false
+    t.integer  "public",             :limit => 1,                 :null => false
     t.string   "hometown"
     t.string   "most_resemble"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "high_school_attendances", :force => true do |t|
@@ -145,21 +153,17 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "parent_id"
     t.integer  "attachable_id"
     t.string   "attachable_type"
-    t.string   "content_type",    :default => "", :null => false
-    t.string   "filename",        :default => "", :null => false
-    t.string   "thumbnail"
-    t.integer  "size",                            :null => false
-    t.integer  "width"
-    t.integer  "height"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
+    t.string   "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
-  add_index "photos", ["parent_id"], :name => "index_photos_on_parent_id"
 
   create_table "prearrivals", :force => true do |t|
     t.integer  "child_id"
@@ -207,6 +211,10 @@ ActiveRecord::Schema.define(:version => 20081031044850) do
     t.integer  "public",                   :limit => 1,                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "relationship_types", :force => true do |t|

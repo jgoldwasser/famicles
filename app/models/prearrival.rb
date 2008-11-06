@@ -19,7 +19,7 @@ class Prearrival < ActiveRecord::Base
   
 private
   def update_photo(tag, data)
-    return if data[:uploaded_data].blank?
+
     if self.photos.tagged_with(tag, :on => :pre_arrival_infos).empty?
       photo = Photo.new(data)
       photo.pre_arrival_info_list = tag

@@ -55,4 +55,9 @@ class ProfilesController < ApplicationController
       render :action => :edit
     end
   end
+
+private
+  def set_current_tab
+    @current_tab = 'profiles'
+  end
 end

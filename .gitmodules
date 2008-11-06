@@ -28,3 +28,6 @@
 [submodule "vendor/plugins/acts-as-taggable-on"]
 	path = vendor/plugins/acts-as-taggable-on
 	url = git@github.com:jgoldwasser/acts-as-taggable-on.git
+[submodule "vendor/plugins/paperclip"]
+	path = vendor/plugins/paperclip
+	url = git@github.com:jgoldwasser/paperclip.git

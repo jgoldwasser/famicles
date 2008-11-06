@@ -26,10 +26,9 @@
     %br
     = f.select :public, public_private_options
   %p
-    - fields_for 'child[photo_data]', @child.photo do |photo_form|
-      %p Photo:
-      = image_tag(@child.photo.public_filename(:thumb)) unless @child.photo.nil?
-      = photo_form.file_field :uploaded_data
+    = f.label :photo, "Photo:"
+    = image_tag @child.photo.url(:small) unless @child.photo.blank?
+    = f.file_field :photo
   %br
   %br
   = submit_tag 'Save', :disable_with => 'Saving...'
