@@ -93,16 +93,20 @@ describe Famicle do
 
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: famicles
 #
-#  id            :integer(4)      not null, primary key
-#  description   :text
-#  hometown      :string(255)
-#  most_resemble :string(255)
-#  name          :string(255)     not null, default("")
-#  public        :integer(1)      not null
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                 :integer(4)      not null, primary key
+#  description        :text
+#  hometown           :string(255)
+#  most_resemble      :string(255)
+#  name               :string(255)     not null, default("")
+#  photo_content_type :string(255)
+#  photo_file_name    :string(255)
+#  photo_file_size    :integer(4)
+#  public             :integer(1)      not null
+#  created_at         :datetime
+#  photo_updated_at   :datetime
+#  updated_at         :datetime
 

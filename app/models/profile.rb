@@ -94,7 +94,7 @@ class Profile < ActiveRecord::Base
 
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: profiles
 #
@@ -110,6 +110,9 @@ end
 #  gender                   :integer(1)      not null
 #  hometown                 :string(100)
 #  parenting_style          :string(100)
+#  photo_content_type       :string(255)
+#  photo_file_name          :string(255)
+#  photo_file_size          :integer(4)
 #  political_view           :string(100)
 #  public                   :integer(1)      not null
 #  public_birthdate_display :integer(1)      not null
@@ -118,5 +121,6 @@ end
 #  what_i_do                :string(2000)
 #  what_i_like              :string(2000)
 #  created_at               :datetime
+#  photo_updated_at         :datetime
 #  updated_at               :datetime
 

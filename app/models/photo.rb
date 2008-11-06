@@ -11,20 +11,17 @@ class Photo < ActiveRecord::Base
   belongs_to :attachable, :polymorphic => true
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: photos
 #
-#  id              :integer(4)      not null, primary key
-#  attachable_id   :integer(4)
-#  parent_id       :integer(4)
-#  attachable_type :string(255)
-#  content_type    :string(255)     not null, default("")
-#  filename        :string(255)     not null, default("")
-#  height          :integer(4)
-#  size            :integer(4)      not null
-#  thumbnail       :string(255)
-#  width           :integer(4)
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id                 :integer(4)      not null, primary key
+#  attachable_id      :integer(4)
+#  attachable_type    :string(255)
+#  image_content_type :string(255)
+#  image_file_name    :string(255)
+#  image_file_size    :string(255)
+#  created_at         :datetime
+#  image_updated_at   :string(255)
+#  updated_at         :datetime
 

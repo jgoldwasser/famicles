@@ -2,7 +2,7 @@ class College < ActiveRecord::Base
   validates_presence_of :name
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: colleges
 #

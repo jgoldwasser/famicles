@@ -15,7 +15,7 @@ class HighSchoolAttendance < ActiveRecord::Base
   end
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: high_school_attendances
 #

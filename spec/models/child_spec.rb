@@ -31,18 +31,22 @@ describe Child do
   end
 end
 # == Schema Info
-# Schema version: 20081031044850
+# Schema version: 20081105063617
 #
 # Table name: children
 #
-#  id         :integer(4)      not null, primary key
-#  famicle_id :integer(4)
-#  birthdate  :date
-#  gender     :integer(1)      not null
-#  name       :string(50)
-#  nickname   :string(50)
-#  not_born   :boolean(1)
-#  public     :integer(1)      not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer(4)      not null, primary key
+#  famicle_id         :integer(4)
+#  birthdate          :date
+#  gender             :integer(1)      not null
+#  name               :string(50)
+#  nickname           :string(50)
+#  not_born           :boolean(1)
+#  photo_content_type :string(255)
+#  photo_file_name    :string(255)
+#  photo_file_size    :integer(4)
+#  public             :integer(1)      not null
+#  created_at         :datetime
+#  photo_updated_at   :datetime
+#  updated_at         :datetime
 
