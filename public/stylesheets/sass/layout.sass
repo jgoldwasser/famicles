@@ -4,16 +4,32 @@
 
 // ==== BODY ====
 body
-  :background-color= !body_background_color
+  :background url('../images/bkgd_pattern.gif')
 
 #container
   :position relative
-  :width 900px
+  :width 995px
   :margin 27px auto 0 auto
   :background-color= !container_background_color
 
+// === HEADER ===
 #header
+  :position relative
+  :background url('../images/header.png')
+  :height 151px
+  #links
+    :position absolute
+    :right 15px
+    :top 15px
+  #menu
+    :padding-top 80px
+    :margin-left 250px
 
 #content
   :position relative
+  :background url('../images/bkgd_sides.png')
   :padding 15px 40px 0 40px
+
+#footer
+  :background url('../images/footer.png')
+  :height 21px

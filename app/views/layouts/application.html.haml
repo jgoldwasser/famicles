@@ -32,16 +32,14 @@
               %li
                 = link_to 'Signup', signup_path
 
-      - if show_famicle_menu?
-        #menu
-          %ul{:id => @current_tab, :class => 'menu'}
-            %li{:id => 'famicles_tab'}= link_to(current_user.default_famicle.name, famicle_path(current_user.default_famicle))
-            %li{:id => 'children_tab'}= link_to("#{current_user.default_famicle.name} Children", famicle_children_path(current_user.default_famicle))
-            %li{:id => 'profiles_tab'}= link_to("#{current_user.profile.full_name}'s Profile", profile_path(current_user))
+        - if show_famicle_menu?
+          #menu
+            %ul{:id => @current_tab, :class => 'menu'}
+              %li{:id => 'famicles_tab'}= link_to(current_user.default_famicle.name, famicle_path(current_user.default_famicle))
+              %li{:id => 'children_tab'}= link_to("#{current_user.default_famicle.name} Children", famicle_children_path(current_user.default_famicle))
+              %li{:id => 'profiles_tab'}= link_to("#{current_user.profile.full_name}'s Profile", profile_path(current_user))
       #content
         = flash_messages
         = yield :layout
-      #right
-        #photos
-          .profile_pic= image_tag("jack_profilepic.jpg")
-          .profile_frame= image_tag("profilepicframe.gif")
+      
+      #footer
