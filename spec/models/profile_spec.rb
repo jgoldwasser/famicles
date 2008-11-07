@@ -5,15 +5,15 @@ include FamicleTestHelper
 
 describe Profile do
   before(:all) do
-    Photo.attachment_options[:path_prefix] =
+    #Photo.attachment_options[:path_prefix] =
         "#{TEST_DIR}/images"
-    @image = Photo.new :uploaded_data =>
+    @image = Photo.new :image =>
         fixture_file_upload("images/profile.jpg", "image/jpg")
   end
 
   after(:all) do
     @image.destroy
-    FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
+    #FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
   end
 
   before(:each) do

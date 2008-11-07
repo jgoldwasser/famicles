@@ -9,7 +9,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081105063617) do
+ActiveRecord::Schema.define(:version => 20081106055707) do
+
+  create_table "arrivals", :force => true do |t|
+    t.integer  "child_id",                                                          :null => false
+    t.string   "named_after",        :limit => 25
+    t.string   "almost_named",       :limit => 25
+    t.datetime "born_at"
+    t.date     "due_date"
+    t.string   "place",              :limit => 100
+    t.integer  "weight_pounds"
+    t.integer  "weight_ounces"
+    t.integer  "height_inches",      :limit => 10,   :precision => 10, :scale => 0
+    t.integer  "head_inches",        :limit => 10,   :precision => 10, :scale => 0
+    t.integer  "apgar_score"
+    t.string   "eye_color",          :limit => 20
+    t.string   "hair_color",         :limit => 20
+    t.string   "blood_type",         :limit => 5
+    t.string   "birthmarks"
+    t.string   "delivery_dr_name",   :limit => 25
+    t.string   "ob_dr_name",         :limit => 25
+    t.integer  "birth_style"
+    t.string   "drugs_during_birth"
+    t.time     "labor_time"
+    t.integer  "hospital_days"
+    t.string   "birth_story",        :limit => 2000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "children", :force => true do |t|
     t.integer  "famicle_id"
@@ -166,7 +193,7 @@ ActiveRecord::Schema.define(:version => 20081105063617) do
   add_index "photos", ["attachable_id", "attachable_type"], :name => "index_photos_on_attachable_id_and_attachable_type"
 
   create_table "prearrivals", :force => true do |t|
-    t.integer  "child_id"
+    t.integer  "child_id",                         :null => false
     t.string   "fetus_nickname",   :limit => 50
     t.date     "due_date"
     t.date     "conception_date"

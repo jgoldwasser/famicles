@@ -4,17 +4,17 @@ include FamicleTestHelper
 
 describe Photo do
   before(:all) do
-    Photo.attachment_options[:path_prefix] =
-        "#{TEST_DIR}/images"
+    #Photo.attachment_options[:path_prefix] =
+    #    "#{TEST_DIR}/images"
   end
 
   after(:all) do
-    FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
+    #FileUtils.rm_rf File.join(RAILS_ROOT, TEST_DIR)
   end
 
   it "should create a new instance given valid attributes" do
     @image = Photo.new
-    @image.uploaded_data = fixture_file_upload("images/profile.jpg", "image/jpg")
+    @image.image = fixture_file_upload("images/profile.jpg", "image/jpg")
     @image.save
   end
 end

@@ -1,0 +1,47 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  named_after: MyString
+  almost_named: MyString
+  born_at: 2008-11-05 21:57:07
+  due_date: 2008-11-05
+  place: MyString
+  weight_pounds: 1
+  weight_ounces: 1
+  height_inches: 9.99
+  head_inches: 9.99
+  apgar_score: 1
+  eye_color: MyString
+  hair_color: MyString
+  blood_type: MyString
+  birthmarks: MyString
+  delivery_dr_name: MyString
+  ob_dr_name: MyString
+  birth_style: 1
+  drugs_during_birth: MyString
+  labor_time: 2008-11-05 21:57:07
+  hospital_days: 1
+  birth_story: MyString
+
+two:
+  named_after: MyString
+  almost_named: MyString
+  born_at: 2008-11-05 21:57:07
+  due_date: 2008-11-05
+  place: MyString
+  weight_pounds: 1
+  weight_ounces: 1
+  height_inches: 9.99
+  head_inches: 9.99
+  apgar_score: 1
+  eye_color: MyString
+  hair_color: MyString
+  blood_type: MyString
+  birthmarks: MyString
+  delivery_dr_name: MyString
+  ob_dr_name: MyString
+  birth_style: 1
+  drugs_during_birth: MyString
+  labor_time: 2008-11-05 21:57:07
+  hospital_days: 1
+  birth_story: MyString

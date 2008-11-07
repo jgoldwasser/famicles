@@ -7,6 +7,7 @@ class Child < ActiveRecord::Base
 
   belongs_to :famicle
   has_one :prearrival, :dependent => :destroy
+  has_one :arrival, :dependent => :destroy
 
   has_attached_file :photo, :styles => { :small => "150x150", :medium => "200x200" },
                     :url => "/assets/child_photos/:id/:style/:basename.:extension",

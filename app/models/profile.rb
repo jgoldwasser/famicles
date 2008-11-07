@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  include VirtualModelAttributes
 
   validates_presence_of :user_id
   validates_presence_of :full_name
@@ -40,15 +41,13 @@ class Profile < ActiveRecord::Base
   
   after_update :save_high_schools, :save_colleges, :save_employers, :save_contact_info
 
-
-
-  def existing_high_school_attendance_attributes=(attributes) set_existing_model_attributes(:high_school_attendances, "high_school", HighSchool, attributes); end
+  def existing_high_school_attendance_attributes=(attributes) set_existing_model_attributes(:high_school_attendances, attributes, "high_school", HighSchool); end
   def new_high_school_attendance_attributes=(attributes) set_new_model_attributes(:high_school_attendances, attributes); end
 
-  def existing_college_attendance_attributes=(attributes) set_existing_model_attributes(:college_attendances, "college", College, attributes); end
+  def existing_college_attendance_attributes=(attributes) set_existing_model_attributes(:college_attendances, attributes, "college", College); end
   def new_college_attendance_attributes=(attributes) set_new_model_attributes(:college_attendances, attributes); end
 
-  def existing_employment_attributes=(attributes) set_existing_model_attributes(:employments, "employer", Employer, attributes); end
+  def existing_employment_attributes=(attributes) set_existing_model_attributes(:employments, attributes, "employer", Employer); end
   def new_employment_attributes=(attributes) set_new_model_attributes(:employments, attributes); end
 
   def contact_info_data=(data)
@@ -59,25 +58,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  private
-  def set_new_model_attributes(name, model_attributes)
-    model_attributes.each do |attributes|
-      send(name).build(attributes.merge({:profile => self}))
-    end
-  end
-
-  def set_existing_model_attributes(name, sub_model, sub_model_class, model_attributes)
-    send(name).reject(&:new_record?).each do |model|
-      attributes = model_attributes[model.id.to_s]
-      if attributes
-        model.attributes = attributes
-        model.write_attribute(sub_model, sub_model_class.find_or_initialize_by_name(attributes["#{sub_model}_name".to_sym]))
-      else
-        send(name).delete(model)
-      end
-    end
-  end
-
+private
   def save_high_schools() save_models(:high_school_attendances); end
   def save_colleges() save_models(:college_attendances); end
   def save_employers() save_models(:employments); end

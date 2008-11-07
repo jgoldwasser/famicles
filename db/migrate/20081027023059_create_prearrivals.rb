@@ -1,7 +1,7 @@
 class CreatePrearrivals < ActiveRecord::Migration
   def self.up
     create_table :prearrivals do |t|
-      t.integer :child_id
+      t.integer :child_id, :null => false
       t.string :fetus_nickname, :limit => 50
       t.date :due_date
       t.date :conception_date

@@ -21,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :famicles do |famicles|
     famicles.resources :children do |children|
       children.resources :prearrivals
+      children.resources :arrivals
     end
   end
 

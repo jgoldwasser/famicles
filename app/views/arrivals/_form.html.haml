@@ -1,0 +1,49 @@
+= error_messages_for :arrival
+
+- form_for [@child.famicle, @child, @arrival], :html => {:multipart => true} do |f|
+  = f.hidden_field :child_id
+  %fieldset
+    %legend General Info
+    %p
+      Name
+      %br
+      = @child.name
+    %p
+      = f.label :named_after
+      %br
+      = f.text_field :named_after
+
+    %p
+      = f.label :almost_named
+      %br
+      = f.text_field :almost_named
+
+    %p
+      = f.label :born_at, 'Born at:'
+      %br
+      = f.text_field :born_at
+
+
+
+  %fieldset
+    %legend Birth Story
+    = f.text_area :birth_story
+
+  %fieldset
+    %legend Photos
+    - fields_for 'arrival[birth_announcement_data]', @arrival.birth_announcement_photo  do |photo_form|
+      %p Birth Announcement:
+      = image_tag(@arrival.birth_announcement_photo.image.url(:small)) unless @arrival.birth_announcement_photo.blank?
+      = photo_form.file_field :image
+
+    - fields_for 'arrival[first_picture_data]', @arrival.first_picture_photo  do |photo_form|
+      %p Nursery Photo:
+      = image_tag(@arrival.first_picture_photo.image.url(:small)) unless @arrival.first_picture_photo.blank?
+      = photo_form.file_field :image
+
+    - fields_for 'arrival[nursery_photo_data]', @arrival.nursery_photo  do |photo_form|
+      %p First Baby Photo:
+      = image_tag(@arrival.nursery_photo.image.url(:small)) unless @arrival.nursery_photo.blank?
+      = photo_form.file_field :image
+
+  = submit_tag 'Save', :disable_with => 'Saving...'

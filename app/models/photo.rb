@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  acts_as_taggable_on :tags, :pre_arrival_infos
+  acts_as_taggable_on :tags, :prearrival, :arrival
 
   has_attached_file :image, :styles => { :small => "150x150", :medium => "200x200" },
                     :url => "/assets/photos/:id/:style/:basename.:extension",
