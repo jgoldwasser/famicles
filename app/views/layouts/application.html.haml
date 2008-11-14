@@ -10,14 +10,24 @@
     %meta{ :name => "resource-type", :content => "document" }/
     %meta{ :name => "MSSmartTagsPreventParsing", :content => "true" }/
     = stylesheet_link_tag 'base'
+    = stylesheet_link_tag 'niftyCorners'
+    //= stylesheet_link_tag 'niftyPrint', :media => 'print'
+
     = javascript_include_tag :defaults
     = javascript_include_tag 'jquery', 'application'
+    = javascript_include_tag 'plugins/nifty'
+    = calendar_date_select_includes
+
     %script{ :type => "text/javascript", :charset => "utf-8" }
       jQuery.noConflict();
       jQuery(document).ready(function(){
       jQuery('textarea').prettyComments({animate: false, maxHeight:300});
       });
+      window.onload=function(){
+      RoundedTop("div.section", "#FFF", "#adc2c3");
+      };
     = javascript_include_tag 'plugins/prettyComments'
+
   %body
     #container
       #header

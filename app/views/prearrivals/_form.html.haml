@@ -2,72 +2,67 @@
 
 - form_for [@child.famicle, @child, @prearrival], :html => {:multipart => true} do |f|
   = f.hidden_field :child_id
-  %fieldset
-    %legend General Info
+  .section
+    .title
+      %h2 general information
+    .content
+      %p
+        Baby Name:
+        = "#{@child.name} (#{@child.gender_display})"
 
-    %p
       = f.label :due_date
-      %br
-      = f.text_field :due_date
+      = f.calendar_date_select :due_date, :popup => :force, :buttons => false
 
-    %p
-      Baby Gender:
-      = @child.gender_display
-
-    %p
-      Baby Name:
-      = @child.name
-
-    %p
       = f.label :fetus_nickname, 'Baby Nickname'
-      %br
       = f.text_field :fetus_nickname
 
-    %p
       = f.label :nursery_theme
-      %br
       = f.text_field :nursery_theme
 
-    %p
       = f.label :baby_shower_date
-      %br
       = f.text_field :baby_shower_date
 
-  %fieldset
-    %legend How We Found Out
-    = f.text_area :how_we_found_out
+  .section
+    .title
+      %h2 how we found out
+    .content
+      = f.text_area :how_we_found_out
 
-  %fieldset
-    %legend Photos
-    - fields_for 'prearrival[belly_photo_data]', @prearrival.belly_photo  do |photo_form|
-      %p Belly Photo:
-      = image_tag(@prearrival.belly_photo.image.url(:small)) unless @prearrival.belly_photo.blank?
-      = photo_form.file_field :image
+  .section
+    .title
+      %h2 photos
+    .content
+      - fields_for 'prearrival[belly_photo_data]', @prearrival.belly_photo  do |photo_form|
+        %p Belly Photo:
+        = image_tag(@prearrival.belly_photo.image.url(:small)) unless @prearrival.belly_photo.blank?
+        = photo_form.file_field :image
 
-    - fields_for 'prearrival[nursery_photo_data]', @prearrival.nursery_photo  do |photo_form|
-      %p Nursery Photo:
-      = image_tag(@prearrival.nursery_photo.image.url(:small)) unless @prearrival.nursery_photo.blank?
-      = photo_form.file_field :image
+      - fields_for 'prearrival[nursery_photo_data]', @prearrival.nursery_photo  do |photo_form|
+        %p Nursery Photo:
+        = image_tag(@prearrival.nursery_photo.image.url(:small)) unless @prearrival.nursery_photo.blank?
+        = photo_form.file_field :image
 
-    - fields_for 'prearrival[first_baby_photo_data]', @prearrival.first_baby_photo  do |photo_form|
-      %p First Baby Photo:
-      = image_tag(@prearrival.first_baby_photo.image.url(:small)) unless @prearrival.first_baby_photo.blank?
-      = photo_form.file_field :image
+      - fields_for 'prearrival[first_baby_photo_data]', @prearrival.first_baby_photo  do |photo_form|
+        %p First Baby Photo:
+        = image_tag(@prearrival.first_baby_photo.image.url(:small)) unless @prearrival.first_baby_photo.blank?
+        = photo_form.file_field :image
 
-  %fieldset
-    %legend Mommy's Pregnancy
-    %table.pregnancy_stats
-      %thead
-        %tr
-          %th Date
-          %th Week
-          %th Weight
-          %th Weight Gain
-          %th Blood Pressure
-          %th Stomach Measurement
-          %th Baby's Heart Rate
-      %tbody{:id => 'preg_stats_body'}
-        = render :partial => 'pregnancy_stat', :collection => @prearrival.pregnancy_stats
+  .section
+    .title
+      %h2 mommy's pregnancy
+    .content
+      %table.pregnancy_stats
+        %thead
+          %tr
+            %th Date
+            %th Week
+            %th Weight
+            %th Weight Gain
+            %th Blood Pressure
+            %th Stomach Measurement
+            %th Baby's Heart Rate
+        %tbody{:id => 'preg_stats_body'}
+          = render :partial => 'pregnancy_stat', :collection => @prearrival.pregnancy_stats
 
-    = add_stat_link "Add entry"
+      = add_stat_link "Add entry"
   = submit_tag 'Save', :disable_with => 'Saving...'

@@ -12,7 +12,7 @@ module ApplicationHelper
   def flash_messages
     messages = []
     %w(notice warning error).each do |msg|
-      messages << content_tag(:div, flash[msg.to_sym], :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
+      messages << content_tag(:div, flash[msg.to_sym], :id => "flash", :class => msg) unless flash[msg.to_sym].blank?
     end
     messages
   end
@@ -24,5 +24,9 @@ module ApplicationHelper
 
   def show_famicle_menu?
     logged_in? && current_user.default_famicle.blank? == false
+  end
+
+  def required
+    image_tag('circle_red.png', :alt => 'required')
   end
 end

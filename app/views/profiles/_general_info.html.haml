@@ -1,45 +1,34 @@
 = f.hidden_field :user_id
-%p
-  = label_tag 'profile_full_name', 'Your Full Name'
-  %br
+
+.col1
+  = f.label :full_name, "full name #{required}"
   = f.text_field :full_name
-%p
-  = f.label :photo, "Profile Photo:"
-  = image_tag @profile.photo.url(:small)
-  = f.file_field :photo
-%p
-  = label_tag 'profile_birthdate', 'Birthdate'
-  %br
+
+  = f.label :birthdate, "birthday #{required}"
   = f.text_field :birthdate
-%p
-  = label_tag 'profile_gender', 'Gender'
-  %br
-  = f.select :gender, gender_options, :include_blank => "Select Gender"
-%p
-  = label_tag 'profile_timezone', 'Your Timezone'
-  %br
-  = f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, :include_blank => "Choose your timezone"
-%p
-  = label_tag 'profile_public_birthdate_display', 'Public Birthdate Display'
-  %br
   = f.select :public_birthdate_display, birthdate_display_options, :include_blank => "Choose public birthdate display"
-%p
-  = label_tag 'profile_hometown', 'Hometown'
-  %br
+
+  = f.label :gender, "sex #{required}"
+  = f.select :gender, gender_options, :include_blank => "Select Gender"
+
+  = f.label :timezone, "timezone #{required}"
+  = f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, :include_blank => "Choose your timezone"
+
+  = f.label :public, "my profile is #{required}"
+  = f.select :public, public_private_options
+
+.col2
+  = f.label :photo, "profile picture:"
+  = f.file_field :photo, :class => "file"
+
+  = f.label :hometown, 'where i live'
   = f.text_field :hometown
-%p
-  = label_tag 'profile_political_view', 'Political View'
-  %br
+
+  = f.label :political_view
   = f.text_field :political_view
-%p
-  = label_tag 'profile_religious_view', 'Religious View'
-  %br
+
+  = f.label :religious_view
   = f.text_field :religious_view
-%p
-  = label_tag 'profile_parenting_style', 'Parenting Style'
-  %br
+
+  = f.label :parenting
   = f.text_field :parenting_style
-%p
-  = label_tag 'profile_public', 'My Profile is:'
-  %br
-  = f.select :public, public_private_options  

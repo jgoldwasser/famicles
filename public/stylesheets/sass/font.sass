@@ -1,6 +1,25 @@
+// ==== COLORS
+!header_bkg = #acc3c3
+!h1_color = #433329
+!h1_highlight_color = #4b7b09
+!label_color = #423128
+
 body
-  :font-family Georgia,serif
+  :font-family Helvetica, serif
 
 h1, legend
-  :font-size 1.8em
+  :font-size 1.2em
+  :color= !h1_color
+  span.highlight
+    :color= !h1_highlight_color
 
+h2
+  :font-size 1.1em
+
+label
+  :text-transform lowercase
+  :color= !label_color
+  :font-weight bold
+  
+span.required label
+  :background url('../images/bkgd_pattern.gif') right

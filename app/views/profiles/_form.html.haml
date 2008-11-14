@@ -1,14 +1,16 @@
 = error_messages_for :profile
 
 - form_for @profile, :html => { :multipart => true }  do |f|
-  #general_information
-    %h2 General Information
-    %fieldset
+  .section
+    .title
+      %h2 general information
+    .content
       = render :partial => 'general_info', :locals => {:f => f}
 
-  #personal_info
-    %h2 Personal Information
-    %fieldset
+  .section
+    .title
+      %h2 personal information
+    .content
       = render :partial => 'personal_info', :locals => {:f => f}
 
   #contact_info

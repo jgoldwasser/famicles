@@ -31,3 +31,6 @@
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git@github.com:jgoldwasser/paperclip.git
+[submodule "vendor/plugins/calendar_date_select"]
+	path = vendor/plugins/calendar_date_select
+	url = git@github.com:jgoldwasser/calendar_date_select.git

@@ -1,11 +1,7 @@
-%h1 Famicle View
-
-%h2= "#{@famicle.name} ID: #{@famicle.id}"
-
-
+%h1= @famicle.name
 
 = link_to 'Add Child', new_famicle_child_path(@famicle)
-
+|
 = link_to 'Edit', edit_famicle_path(@famicle)
 |
 = link_to 'Back', famicles_path
